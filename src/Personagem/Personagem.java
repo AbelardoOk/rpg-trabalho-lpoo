@@ -24,7 +24,7 @@ abstract class Personagem {
       return nome;
     }
     
-    public int getVida() {
+    public float getVida() {
       return vida;
     }
 
