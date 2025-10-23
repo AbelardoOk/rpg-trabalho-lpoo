@@ -1,15 +1,15 @@
-package src.Personagem;
+package src.Monstro;
 
 import java.util.Random;
 
-public abstract class Personagem {
+abstract class Monstro {
     private String nome;
     private float vida;
     private int forca;
     private int nivel;
     private int defesa;
-    
-    public int getDefesa() {
+
+        public int getDefesa() {
       return defesa;
     }
 
@@ -49,14 +49,14 @@ public abstract class Personagem {
       this.vida = vida;
     }
 
-    public void atacar(Monstro monstro){
+    public void atacar(Personagem heroi){
         Random gerador = new Random();
         int dano = gerador.nextInt(defesa) * getForca();
         if(defender()){
-          monstro.recebeDano(dano);
+          heroi.recebeDano(dano);
           System.out.println("Você recebeu " + dano + "de dano\n");
         } else{
-          System.out.println("O mosntro se esquivou do ataque\n");
+          System.out.println("Você se esquivou do ataque\n");
         }
     }
 
@@ -69,9 +69,4 @@ public abstract class Personagem {
         }
     }
 
-    public void recebeDano(float dano){
-      this.vida -= dano;
-    }
-
 }
-

@@ -1,3 +1,5 @@
-public class Arqueiro extends Personagem {
+package src.Personagem;
 
+public class Arqueiro extends Personagem {
+  
 }
