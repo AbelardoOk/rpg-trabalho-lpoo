@@ -1,4 +1,7 @@
 package src.Personagem;
+package src.Monstro;
+import src.Monstro.Monstro;
+
 import java.util.Random;
 
 abstract class Personagem {
@@ -51,7 +54,7 @@ abstract class Personagem {
     public void atacar(Monstro monstro){
         Random gerador = new Random();
         int dano = gerador.nextInt(defesa) * getForca();
-        monstro.recebeDano(dano);
+        monstro.setDano(dano);
         System.out.println("Você deu " + dano + "de dano em " + monstro.getNome() + "\n");
     }
 
