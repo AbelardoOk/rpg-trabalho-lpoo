@@ -1,54 +1,77 @@
 package src.Monstro;
 
+import src.Personagem.Personagem;
+import java.util.Random;
+
 public abstract class Monstro {
     private String nome;
-    private int nivel;
     private float vida;
+    private int forca;
+    private int nivel;
     private int defesa;
-    private int dano;
 
-
-
-    public String getNome(){
-        return this.nome;
+    public int getDefesa() {
+      return defesa;
     }
 
-    public int getNivel(){
-        return this.nivel;
+    public int getForca() {
+      return forca;
     }
 
-    public float getVida(){
-        return this.vida;
+    public int getNivel() {
+      return nivel;
     }
 
-    public int getDefesa(){
-        return this.defesa;
-
+    public String getNome() {
+      return nome;
+    }
+    
+    public float getVida() {
+      return vida;
     }
 
-    public int getDano(){
-        return this.dano;
+    public void setDefesa(int defesa) {
+      this.defesa = defesa;
     }
 
-    public void setNome(String nome){
-        this.nome = nome;
+    public void setForca(int forca) {
+      this.forca = forca;
     }
 
-    public void setNivel(int nivel){
-        this.nivel = nivel;
+    public void setNivel(int nivel) {
+      this.nivel = nivel;
     }
 
-    public void setVida(float vida){
-        this.vida = vida;
+    public void setNome(String nome) {
+      this.nome = nome;
     }
 
-    public void setDefesa(int defesa){
-        this.defesa = defesa;
+    public void setVida(int vida) {
+      this.vida = vida;
     }
 
-    public void setDano(int dano){
-        this.dano = dano;
+    public void atacar(Personagem heroi){
+        Random gerador = new Random();
+        int dano = gerador.nextInt(defesa) * getForca();
+        if(!defender()){
+          heroi.recebeDano(dano);
+          System.out.println("Você recebeu " + dano + "de dano\n");
+        } else{
+          System.out.println("Você se esquivou do ataque\n");
+        }
     }
 
+    public boolean defender(){
+        Random gerador = new Random();
+        if(gerador.nextInt(defesa) > 4){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void recebeDano(float dano){
+      this.vida -= dano;
+    }
 
 }

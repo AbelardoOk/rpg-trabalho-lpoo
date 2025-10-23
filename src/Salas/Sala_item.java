@@ -1,4 +1,4 @@
-package Salas;
+package src.Salas;
 
 public class Sala_item {
     int qnt_item;
