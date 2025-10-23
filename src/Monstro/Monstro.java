@@ -1,8 +1,9 @@
 package src.Monstro;
 
+import src.Personagem.Personagem;
 import java.util.Random;
 
-abstract class Monstro {
+public abstract class Monstro {
     private String nome;
     private float vida;
     private int forca;
@@ -52,7 +53,7 @@ abstract class Monstro {
     public void atacar(Personagem heroi){
         Random gerador = new Random();
         int dano = gerador.nextInt(defesa) * getForca();
-        if(defender()){
+        if(!defender()){
           heroi.recebeDano(dano);
           System.out.println("Você recebeu " + dano + "de dano\n");
         } else{
@@ -67,6 +68,10 @@ abstract class Monstro {
         } else {
             return false;
         }
+    }
+
+    public void recebeDano(float dano){
+      this.vida -= dano;
     }
 
 }
