@@ -26,7 +26,7 @@ public abstract class Personagem {
 
     public boolean defender(){
         Random gerador = new Random();
-        if(gerador.nextInt(defesa) > 4){
+        if(gerador.nextInt() > 4){
             return true;
         } else {
             return false;
