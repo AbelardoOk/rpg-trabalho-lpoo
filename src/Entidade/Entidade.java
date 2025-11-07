@@ -1,9 +1,9 @@
-package src.Personagem;
+package src.Entidade;
 
-import src.Monstro.Monstro;
 import java.util.Random;
 
-public abstract class Personagem {
+
+public abstract class Entidade {
     private String nome;
     private float vida;
     private int forca;
@@ -22,7 +22,7 @@ public abstract class Personagem {
     public void setNome(String nome) { this.nome = nome; }
     public void setVida(float vida) { this.vida = vida; }
 
-    public abstract void atacar(Monstro monstro);
+    public abstract void atacar(Entidade entidade);
 
     public boolean defender(){
         Random gerador = new Random();
@@ -36,6 +36,4 @@ public abstract class Personagem {
     public void recebeDano(float dano){
       this.vida -= dano;
     }
-
 }
-
