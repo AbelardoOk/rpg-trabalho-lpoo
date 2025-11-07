@@ -3,7 +3,15 @@ package src.Entidade.Personagem;
 import src.Entidade.Entidade;
 import java.util.Random;
 
-public abstract class Personagem extends Entidade {
+public class Personagem extends Entidade {
+
+    public Personagem(String nome) {
+      super(nome);
+      setForca(10);
+      setNivel(1);
+      setVida(100);
+      setDefesa(10);
+    }
 
     public void atacar(Entidade entidade){
         Random gerador = new Random();

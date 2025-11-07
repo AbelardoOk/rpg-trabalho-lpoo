@@ -4,7 +4,18 @@ import java.util.Random;
 
 import src.Entidade.Entidade;
 
-public abstract class Monstro extends Entidade {
+public class Monstro extends Entidade {
+
+    public Monstro(String nome, int nivel) {
+      super(nome);
+      Random gerador = new Random();
+      
+      setForca(gerador.nextInt(10) * nivel);
+      setNivel(1);
+      setVida(Math.round(gerador.nextInt(10) * 0.5 * nivel));
+      setDefesa(gerador.nextInt(10) * nivel);
+    }
+
     public void atacar(Entidade entidade){
         Random gerador = new Random();
         int dano = gerador.nextInt(getDefesa()) * getForca();

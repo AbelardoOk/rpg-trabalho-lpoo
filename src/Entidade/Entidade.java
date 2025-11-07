@@ -24,6 +24,10 @@ public abstract class Entidade {
 
     public abstract void atacar(Entidade entidade);
 
+    protected Entidade(String nome){
+        setNome(nome);
+    }
+    
     public boolean defender(){
         Random gerador = new Random();
         if(gerador.nextInt() > 4){
@@ -35,5 +39,9 @@ public abstract class Entidade {
 
     public void recebeDano(float dano){
       this.vida -= dano;
+    }
+
+    public boolean estaVivo() {
+        return this.vida > 0;
     }
 }
