@@ -7,10 +7,14 @@ import java.util.Random;
 
 public class Personagem extends Entidade {
     private int curas;
+    private int experiencia;
 
-    public void setCuras(int curas) {
-      this.curas = curas;
-    }
+    public void setCuras(int curas) { this.curas = curas; }
+    public int getCuras() { return curas; }
+
+    public void setExp(int exp) { this.experiencia = exp; }
+    public int getExperiencia() { return experiencia; }
+
 
     public Personagem(String nome) {
       super(nome);
@@ -19,12 +23,22 @@ public class Personagem extends Entidade {
       setVida(100);
       setDefesa(10);
       setCuras(5);
+      setExp(0);
     }
 
     public void curar(){
       if(curas > 0){
         Cura pocao = new Cura();
         pocao.consumir(this);
+      }
+    }
+
+    public void evoluir(int exp){
+      setExp(getExperiencia() + exp);
+      if(getExperiencia() > 100){
+        System.out.println("Você evoluiu um nível!");
+        setExp(getExperiencia() - 100);
+        // Sistema para melhorar atributos
       }
     }
 

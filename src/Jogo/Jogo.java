@@ -1,5 +1,7 @@
 package src.Jogo;
 
+import java.util.Random;
+
 import src.Entidade.Monstro.*;
 import src.Entidade.Personagem.*;
 
@@ -9,6 +11,7 @@ public class Jogo {
   int monstrosDerrotados;
 
   public void controlarPartida(){
+    Random gerador = new Random();
     this.faseAtual = 1;
     this.monstrosDerrotados = 0;
 
@@ -27,6 +30,7 @@ public class Jogo {
         this.monstrosDerrotados++;
           this.faseAtual++;
           if(heroi.getVida() < 50) {heroi.curar();}
+          heroi.evoluir(gerador.nextInt(faseAtual) * 100); // Checar se desse jeito está bom
           System.out.println(heroi.getNome() + " avança para a próxima fase...");
       }
     }
