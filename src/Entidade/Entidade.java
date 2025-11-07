@@ -1,9 +1,10 @@
-package src.Personagem;
+package src.Entidade;
 
-import src.Monstro.Monstro;
 import java.util.Random;
 
-public abstract class Personagem {
+import src.Monstro.Monstro;
+
+public class Entidade {
     private String nome;
     private float vida;
     private int forca;
@@ -36,6 +37,4 @@ public abstract class Personagem {
     public void recebeDano(float dano){
       this.vida -= dano;
     }
-
 }
-
