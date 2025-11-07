@@ -1,9 +1,16 @@
 package src.Entidade.Personagem;
 
 import src.Entidade.Entidade;
+import src.Item.Pocoes.Cura;
+
 import java.util.Random;
 
 public class Personagem extends Entidade {
+    private int curas;
+
+    public void setCuras(int curas) {
+      this.curas = curas;
+    }
 
     public Personagem(String nome) {
       super(nome);
@@ -11,6 +18,14 @@ public class Personagem extends Entidade {
       setNivel(1);
       setVida(100);
       setDefesa(10);
+      setCuras(5);
+    }
+
+    public void curar(){
+      if(curas > 0){
+        Cura pocao = new Cura();
+        pocao.consumir(this);
+      }
     }
 
     public void atacar(Entidade entidade){

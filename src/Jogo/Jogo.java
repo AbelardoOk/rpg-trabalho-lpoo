@@ -26,7 +26,7 @@ public class Jogo {
       if (heroiEstaVivo) {
         this.monstrosDerrotados++;
           this.faseAtual++;
-          // Adicionar sistema de SE TIVER MENOS DE 10 DE VIDA, USAR POÇÃO DE CURA
+          if(heroi.getVida() < 50) {heroi.curar();}
           System.out.println(heroi.getNome() + " avança para a próxima fase...");
       }
     }
