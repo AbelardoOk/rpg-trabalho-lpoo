@@ -1,4 +1,4 @@
-package src.Monstro;
+package src.Entidade.Monstro;
 
 public class Boss {
   
