@@ -1,6 +1,6 @@
 package src.Item;
 
-abstract class Item {
+public class Item {
   private String nome;
 
   public void setNome(String nome) { this.nome = nome; }
