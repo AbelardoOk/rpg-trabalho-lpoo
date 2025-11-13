@@ -31,7 +31,7 @@ public class Monstro extends Entidade {
 
     public void atacar(Entidade entidade){
         Random gerador = new Random();
-        int dano = gerador.nextInt(getDefesa()) * getForca();
+        float dano = gerador.nextInt(getDefesa()) * getForca();
         if(!defender()){
           entidade.recebeDano(dano);
           System.out.println(super.getNome() + " recebeu " + dano + " de dano\n");
