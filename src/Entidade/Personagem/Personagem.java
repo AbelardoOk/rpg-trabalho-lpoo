@@ -1,7 +1,7 @@
 package src.Entidade.Personagem;
 
 import src.Entidade.Entidade;
-import src.Item.PocaoCura;
+import src.Item.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,6 +9,7 @@ import java.util.Random;
 public class Personagem extends Entidade {
     private int curas;
     private int experiencia;
+    ArrayList<Item> itens=new ArrayList<>();
 
     public void setCuras(int curas) { this.curas = curas; }
     public int getCuras() { return curas; }
@@ -16,6 +17,23 @@ public class Personagem extends Entidade {
     public void setExperiencia(int exp) { this.experiencia = exp; }
     public int getExperiencia() { return experiencia; }
 
+    public void setItens(Item item){
+      this.itens.add(item);  
+    }
+
+    public String getItens(){
+      String texto;
+      if (this.itens.isEmpty()) {
+        return "O carrinho está vazio.";
+      }else{
+        texto=getNome()+" possui: \n";
+        for(Item aux:itens){
+         texto=texto+aux;
+        }
+        
+        return texto;
+      }
+    }
 
     public Personagem(String nome) {
       super(nome);

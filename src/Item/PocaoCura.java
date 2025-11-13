@@ -26,6 +26,12 @@ public class PocaoCura extends Item {
     
   }
 
+  
+  @Override 
+  public String toString() {
+    return super.toString()+" Vida Maxima Curada:"+ this.eficacia+"\n";
+  }
+
   public PocaoCura(){
     setNome("Pocao de Cura");
     Random gerador = new Random();
