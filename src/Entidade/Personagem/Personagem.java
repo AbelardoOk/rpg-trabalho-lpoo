@@ -1,8 +1,9 @@
 package src.Entidade.Personagem;
 
 import src.Entidade.Entidade;
-import src.Item.Pocoes.Cura;
+import src.Item.PocaoCura;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Personagem extends Entidade {
@@ -28,7 +29,7 @@ public class Personagem extends Entidade {
 
     public void curar(){
       if(curas > 0){
-        Cura pocao = new Cura();
+        PocaoCura pocao = new PocaoCura();
         pocao.consumir(this);
       }
     }
