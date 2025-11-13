@@ -21,7 +21,7 @@ public abstract class Entidade {
     public void setForca(int forca) { this.forca = forca; }
     public void setNivel(int nivel) { this.nivel = nivel; }
     public void setNome(String nome) { this.nome = nome; }
-    public void setVida(float vida) { this.vida = vida; }
+    public void setVida(float vida) { this.vida += vida; }
 
     public abstract void atacar(Entidade entidade);
 

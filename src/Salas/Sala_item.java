@@ -1,6 +1,6 @@
 package src.Salas;
 
-import src.Item.Item.java;
+import src.Item;
 
 public class Sala_item {
     Item ferramenta;

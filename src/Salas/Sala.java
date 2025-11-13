@@ -2,5 +2,11 @@ package src.Salas;
 
 public abstract class Sala {
     String nome;
-    int dificuldade;
+    int exp;
+
+    public abstract void entrouSala();
+
+    
+
+
 }
