@@ -4,7 +4,7 @@ import java.util.Random;
 
 import src.Entidade.Personagem.Personagem;
 
-public class SalaEspecial {
+public class SalaEspecial extends Sala{
     private float modificadorVida;
 
     public void setModificadorVida(float vida){
@@ -17,12 +17,15 @@ public class SalaEspecial {
     }
 
     public void entrouSala(Personagem heroi){
+        
         Random gerador= new Random();
         if(gerador.nextInt(10)>5){
             heroi.setVida(modificadorVida);
+            setNome("Sala de Cura");
         }
         else{
             heroi.recebeDano(modificadorVida);
+            setNome("Sala de Armadilha");
         }
     }
 
