@@ -1,5 +1,7 @@
 package src.Item;
 
+import src.Entidade.Entidade;
+
 public abstract class Pocao {
   private int eficacia;
 
@@ -11,5 +13,5 @@ public abstract class Pocao {
     return eficacia;
   }
 
-  public abstract void consumir();
+  public abstract void consumir(Entidade p);
 }
