@@ -21,14 +21,20 @@ public class Personagem extends Entidade {
       this.itens.add(item);  
     }
 
-    public String getItens(){
+    public int QuantidadeItens(){
+      return this.itens.size();
+    }
+
+    public String ImprimirItens(){ //retorna uma string por causa da interface
       String texto;
+      int cont=1;
       if (this.itens.isEmpty()) {
         return "O carrinho está vazio.";
       }else{
-        texto=getNome()+" possui: \n";
+        texto=getNome()+" possui os seguinte(s) item(ns): \n";
         for(Item aux:itens){
-         texto=texto+aux;
+         texto=cont+texto+aux;
+         cont++;
         }
         
         return texto;
