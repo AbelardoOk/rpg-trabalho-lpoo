@@ -13,7 +13,7 @@ public class Personagem extends Entidade {
     public void setCuras(int curas) { this.curas = curas; }
     public int getCuras() { return curas; }
 
-    public void setExperiencia(int exp) { this.experiencia = exp; }
+    public void setExperiencia(int exp) { this.experiencia += exp; }
     public int getExperiencia() { return experiencia; }
 
 
@@ -36,8 +36,10 @@ public class Personagem extends Entidade {
 
     public void evoluir(int exp){
       setExperiencia(getExperiencia() + exp);
+      System.out.println(super.getNome() + " ganhou "+ getExperiencia() +" de experiência!");
       if(getExperiencia() > 100){
         System.out.println(super.getNome() + " evoluiu um nível!");
+        setNivel(1); //
         setExperiencia(getExperiencia() - 100);
         // Sistema para melhorar atributos
       }
@@ -46,11 +48,12 @@ public class Personagem extends Entidade {
     public void atacar(Entidade entidade){
         Random gerador = new Random();
         int dano = gerador.nextInt(getDefesa()) * getForca();
+        System.out.println(this.getNome() + " atacou com força " + dano + " de dano\n");
         if(!defender()){
           entidade.recebeDano(dano);
-          System.out.println(super.getNome() + " recebeu " + dano + " de dano\n");
+          System.out.println(entidade.getNome() + " recebeu " + dano + " de dano\n");
         } else{
-          System.out.println(super.getNome() +  " se esquivou do ataque\n");
+          System.out.println(entidade.getNome() +  " se esquivou do ataque\n");
         }
     };
 }

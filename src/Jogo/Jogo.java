@@ -1,4 +1,5 @@
 package src.Jogo;
+import src.Salas.*;
 
 import java.util.Random;
 
@@ -6,58 +7,62 @@ import src.Entidade.Monstro.*;
 import src.Entidade.Personagem.*;
 
 public class Jogo {
-  static int recorde;
-  int faseAtual;
-  int monstrosDerrotados;
+    static int recorde;
+    int faseAtual;
+    int monstrosDerrotados;
 
-  public void controlarPartida(){
-    Random gerador = new Random();
-    this.faseAtual = 1;
-    this.monstrosDerrotados = 0;
+    public void controlarPartida() {
+        Random gerador = new Random();
+        this.faseAtual = 1;
+        this.monstrosDerrotados = 0;
 
-    Personagem heroi = new Personagem("Conan");
-    boolean heroiEstaVivo = true;
+        Personagem heroi = new Personagem("Conan");
 
-    while (heroiEstaVivo){
-      System.out.println("\n=======================");
-      System.out.println("      FASE " + this.faseAtual);
-      System.out.println("=======================");
-      
-      Monstro inimigo = new Monstro("Monstro Nv." + this.faseAtual, this.faseAtual);
-      heroiEstaVivo = this.iniciarBatalha(heroi, inimigo);
+        boolean heroiEstaVivo = true;
 
-      if (heroiEstaVivo) {
-        this.monstrosDerrotados++;
-          this.faseAtual++;
-          if(heroi.getVida() < 50) {heroi.curar();}
-          heroi.evoluir(gerador.nextInt(faseAtual) * 100); // Checar se desse jeito está bom
-          System.out.println(heroi.getNome() + " avança para a próxima fase...");
-      }
-    }
+        while (heroiEstaVivo) {
 
-    this.exibirFimDeJogo(heroi);
-  }
+            System.out.println("\n=======================");
+            System.out.println("      FASE " + this.faseAtual);
+            System.out.println("=======================");
 
-  public boolean iniciarBatalha(Personagem heroi, Monstro inimigo){
+            Monstro inimigo = new Monstro("Monstro Nv." + this.faseAtual, this.faseAtual);
+            heroiEstaVivo = this.iniciarBatalha(heroi, inimigo);
 
-      int turno = 1;
-      System.out.println("--- Inimigo: " + inimigo.getNome() + " apareceu! ---");
-      
-      while(heroi.estaVivo() && inimigo.estaVivo()){
-        System.out.println("\n--- Turno " + turno + " ---");
-
-        System.out.println(heroi.getNome() + " (Vida: " + heroi.getVida() + ")");
-        System.out.println(inimigo.getNome() + " (Vida: " + inimigo.getVida() + ")");
-
-        heroi.atacar(inimigo);
-            
-        if (inimigo.estaVivo()) {
-          inimigo.atacar(heroi);
+            if (heroiEstaVivo) {
+                this.monstrosDerrotados++;
+                this.faseAtual++;
+                if (heroi.getVida() < 50) {
+                    heroi.curar();
+                }
+                heroi.evoluir(gerador.nextInt(faseAtual) * 99); // Checar se desse jeito está bom
+                System.out.println(heroi.getNome() + " avança para a próxima fase...");
+            }
         }
 
-        turno++;
-      }
-      System.out.println("\n--- Batalha Encerrada ---");
+        this.exibirFimDeJogo(heroi);
+    }
+
+    public boolean iniciarBatalha(Personagem heroi, Monstro inimigo) {
+
+        int turno = 1;
+        System.out.println("--- Inimigo: " + inimigo.getNome() + " apareceu! ---");
+
+        while (heroi.estaVivo() && inimigo.estaVivo()) {
+            System.out.println("\n--- Turno " + turno + " ---");
+
+            System.out.println(heroi.getNome() + " (Vida: " + heroi.getVida() + ")");
+            System.out.println(inimigo.getNome() + " (Vida: " + inimigo.getVida() + ")");
+
+            heroi.atacar(inimigo);
+
+            if (inimigo.estaVivo()) {
+                inimigo.atacar(heroi);
+            }
+
+            turno++;
+        }
+        System.out.println("\n--- Batalha Encerrada ---");
         if (heroi.estaVivo()) {
             System.out.println(heroi.getNome() + " é o vencedor!");
             return true;
@@ -66,23 +71,22 @@ public class Jogo {
             System.out.println(heroi.getNome() + " foi derrotado.");
             return false;
         }
-  }
+    }
 
-  public void exibirFimDeJogo(Personagem heroi){
-      System.out.println("\n--- FIM DE JOGO ---");
-      System.out.println("Herói: " + heroi.getNome());
-      System.out.println("Monstros Derrotados: " + this.monstrosDerrotados);
-      System.out.println("Fase Alcançada: " + this.faseAtual);
+    public void exibirFimDeJogo(Personagem heroi) {
+        System.out.println("\n--- FIM DE JOGO ---");
+        System.out.println("Herói: " + heroi.getNome());
+        System.out.println("Monstros Derrotados: " + this.monstrosDerrotados);
+        System.out.println("Fase Alcançada: " + this.faseAtual);
 
-      if (this.monstrosDerrotados > recorde) {
-          recorde = this.monstrosDerrotados;
-          System.out.println("NOVO RECORDE!");
-      }
-  }
+        if (this.monstrosDerrotados > recorde) {
+            recorde = this.monstrosDerrotados;
+            System.out.println("NOVO RECORDE!");
+        }
+    }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
         Jogo novoJogo = new Jogo();
         novoJogo.controlarPartida();
     }
-
 }

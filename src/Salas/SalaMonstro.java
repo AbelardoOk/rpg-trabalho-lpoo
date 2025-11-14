@@ -6,6 +6,13 @@ import java.util.Scanner;
 public class SalaMonstro extends Sala{
 
     public void entrouSala(Personagem heroi){
+        /* ao entrar na sala a expercia ascrescentada caso ganhe a luta é do nível +2
+        se o  nível é multiplo de 3 o nível de expericiencia é multiplicado pelo nível da dificuldade
+        do monstro*/
+        int experiencia= heroi.getNivel()+2;
+
+        if(heroi.getNivel()%3==0){ experiencia*=3; }
+
         Monstro inimigo = new Monstro("Gollum",heroi.getNivel());
 
         System.out.println("\n=======================");
@@ -14,8 +21,10 @@ public class SalaMonstro extends Sala{
 
         inimigo.atacar(heroi);
 
+
+
         if(heroi.estaVivo()){
-            System.out.println("Se você derrotar o montros irá ganhar **** de experiência.");
+            System.out.println("Se você derrotar o montros irá ganhar"+ experiencia +" de experiência.");
             System.out.println("Deseja enfrentar monstro ? ");
             int opcao;
             do {
