@@ -38,8 +38,12 @@ public class Personagem extends Entidade {
     }
 
     public Personagem(String nome, float vida_maxima, int forca, int nivel, int defesa, int experiencia) {
-      super(nome, vida_maxima, forca, nivel, defesa);
-      this.experiencia = experiencia;
+      super(nome, nivel);
+      setExperiencia(experiencia);
+      setVidaMaxima(vida_maxima);
+      setVidaAtual(vida_maxima);
+      setForca(forca);
+      setDefesa(defesa);
     }
 
     //public void curar(){}

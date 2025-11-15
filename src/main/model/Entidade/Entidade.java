@@ -28,13 +28,9 @@ public abstract class Entidade {
 
     public abstract void atacar(Entidade entidade);
 
-    public Entidade(String nome, float vida_maxima, int forca, int nivel, int defesa){
+    public Entidade(String nome, int nivel){
         this.nome = nome;
-        this.vida_maxima = vida_maxima;
-        this.vida_atual = vida_maxima;
-        this.forca = forca;
         this.nivel = nivel;
-        this.defesa = defesa;
     }
     
     public boolean defender(){
