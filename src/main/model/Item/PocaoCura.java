@@ -1,7 +1,8 @@
-package src.Item;
+package src.main.model.Item;
 
-import src.Entidade.Entidade;
 import java.util.Random;
+
+import src.main.model.Entidade.Entidade;
 
 public class PocaoCura extends Item {
   private int eficacia;

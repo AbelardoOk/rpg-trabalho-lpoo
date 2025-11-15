@@ -1,6 +1,6 @@
-package src.Salas;
+package src.main.model.Salas;
 
-import src.Entidade.Personagem.Personagem;
+import src.main.model.Entidade.Personagem.Personagem;
 
 public abstract class Sala {
     private String nome;

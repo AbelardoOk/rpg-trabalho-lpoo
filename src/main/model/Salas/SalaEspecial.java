@@ -1,8 +1,8 @@
-package src.Salas;
+package src.main.model.Salas;
 
 import java.util.Random;
 
-import src.Entidade.Personagem.Personagem;
+import src.main.model.Entidade.Personagem.Personagem;
 
 public class SalaEspecial extends Sala{
     private float modificadorVida;

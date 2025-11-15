@@ -1,4 +1,4 @@
-package src.Entidade;
+package src.main.model.Entidade;
 
 import java.util.Random;
 

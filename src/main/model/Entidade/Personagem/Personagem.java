@@ -1,7 +1,7 @@
-package src.Entidade.Personagem;
+package src.main.model.Entidade.Personagem;
 
-import src.Entidade.Entidade;
-import src.Item.*;
+import src.main.model.Entidade.Entidade;
+import src.main.model.Item.*;
 
 import java.util.ArrayList;
 import java.util.Random;

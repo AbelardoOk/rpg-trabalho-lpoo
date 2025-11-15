@@ -1,4 +1,4 @@
-package src.Item;
+package src.main.model.Item;
 
 public class Item {
   private String nome;

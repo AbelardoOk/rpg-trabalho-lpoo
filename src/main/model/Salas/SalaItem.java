@@ -1,9 +1,9 @@
-package src.Salas;
+package src.main.model.Salas;
 
 import java.util.Random;
 
-import src.Entidade.Personagem.Personagem;
-import src.Item.*;
+import src.main.model.Entidade.Personagem.Personagem;
+import src.main.model.Item.*;
 
 public class SalaItem extends Sala{
     Item ferramenta;

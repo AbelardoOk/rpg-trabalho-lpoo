@@ -1,7 +1,8 @@
-package src.Salas;
-import src.Entidade.Monstro.Monstro;
-import src.Entidade.Personagem.Personagem;
+package src.main.model.Salas;
 import java.util.Scanner;
+
+import src.main.model.Entidade.Monstro.Monstro;
+import src.main.model.Entidade.Personagem.Personagem;
 
 public class SalaMonstro extends Sala{
 

@@ -1,9 +1,9 @@
-package src.Jogo;
+package src.main.model.Jogo;
 
 import java.util.Random;
 
-import src.Entidade.Monstro.*;
-import src.Entidade.Personagem.*;
+import src.main.model.Entidade.Monstro.*;
+import src.main.model.Entidade.Personagem.*;
 
 public class Jogo {
   static int recorde;

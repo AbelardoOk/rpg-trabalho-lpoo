@@ -1,8 +1,8 @@
-package src.Entidade.Monstro;
+package src.main.model.Entidade.Monstro;
 
 import java.util.Random;
 
-import src.Entidade.Entidade;
+import src.main.model.Entidade.Entidade;
 
 public class Monstro extends Entidade {
     private static int base_Atributo = (int) (Math.random() * 10);
