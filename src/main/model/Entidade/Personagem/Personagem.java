@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Personagem extends Entidade {
-    private int curas;
     private int experiencia;
     ArrayList<Item> itens=new ArrayList<>();
-
-    public void setCuras(int curas) { this.curas = curas; }
-    public int getCuras() { return curas; }
 
     public void setExperiencia(int exp) { this.experiencia = exp; }
     public int getExperiencia() { return experiencia; }
@@ -41,22 +37,12 @@ public class Personagem extends Entidade {
       }
     }
 
-    public Personagem(String nome) {
-      super(nome);
-      setForca(10);
-      setNivel(1);
-      setVida(100);
-      setDefesa(10);
-      setCuras(5);
-      setExperiencia(0);
+    public Personagem(String nome, float vida_maxima, int forca, int nivel, int defesa, int experiencia) {
+      super(nome, vida_maxima, forca, nivel, defesa);
+      this.experiencia = experiencia;
     }
 
-    public void curar(){
-      if(curas > 0){
-        PocaoCura pocao = new PocaoCura();
-        pocao.consumir(this);
-      }
-    }
+    //public void curar(){}
 
     public void evoluir(int exp){
       setExperiencia(getExperiencia() + exp);
