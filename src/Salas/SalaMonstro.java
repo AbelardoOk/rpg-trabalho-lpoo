@@ -58,11 +58,13 @@ public class SalaMonstro extends Sala{
                     else{
                         //Verificar itens disponíveis
                     }
-                }
+                }if(heroi.estaVivo()){
+                    heroi.evoluir(experiencia);
+                } else{
+                    System.out.println(heroi.getNome() +" está derrotado!!");
             }
 
-        } else{
-            System.out.println(heroi.getNome() +" está derrotado!!");
+        }
         }
 
 
