@@ -31,7 +31,7 @@ public class SalaMonstro extends Sala{
                 System.out.println("Digite 0 para fugir e 1 para lutar: ");
                 Scanner sc = new Scanner(System.in);
                 opcao = sc.nextInt();
-            }while(opcao != 0 || opcao != 1);
+            }while(opcao != 0 && opcao != 1);
 
             if(opcao==0){
                 // Heroi fugiu da batalha
