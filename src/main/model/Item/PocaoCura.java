@@ -17,12 +17,12 @@ public class PocaoCura extends Item {
 
   public void consumir(Entidade p){
     float vida;
-    vida=p.getVida() + getEficacia();
-    if(vida>100){
-      vida=vida-100;
-      p.setVida(vida);
+    vida=p.getVidaAtual() + getEficacia();
+    if(vida>p.getVidaMaxima()){
+      vida=vida-p.getVidaMaxima();
+      p.setVidaAtual(vida);
     }else{
-      p.setVida(vida);
+      p.setVidaAtual(vida);
     }
     
   }
