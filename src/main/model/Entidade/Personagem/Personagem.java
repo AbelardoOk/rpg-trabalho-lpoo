@@ -1,34 +1,34 @@
 package src.main.model.Entidade.Personagem;
 
 import src.main.model.Entidade.Entidade;
-import src.main.model.Item.*;
+import src.main.model.Item.pocao.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Personagem extends Entidade {
     private int experiencia;
-    ArrayList<Item> itens=new ArrayList<>();
+    ArrayList<Pocao> pocoes=new ArrayList<>();
 
     public void setExperiencia(int exp) { this.experiencia = exp; }
     public int getExperiencia() { return experiencia; }
 
-    public void setItens(Item item){
-      this.itens.add(item);  
+    public void setPocoes(Pocao pocao){
+      this.pocoes.add(pocao);  
     }
 
-    public int QuantidadeItens(){
-      return this.itens.size();
+    public int QuantidadePocoes(){
+      return this.pocoes.size();
     }
 
-    public String ImprimirItens(){ //retorna uma string por causa da interface
+    public String ImprimirPocoes(){ //retorna uma string por causa da interface
       String texto;
       int cont=1;
-      if (this.itens.isEmpty()) {
+      if (this.pocoes.isEmpty()) {
         return "O inventário está vazio.";
       }else{
         texto=getNome()+" possui os seguinte(s) item(ns): \n";
-        for(Item aux:itens){
+        for(Pocao aux:pocoes){
          texto=cont+texto+aux;
          cont++;
         }

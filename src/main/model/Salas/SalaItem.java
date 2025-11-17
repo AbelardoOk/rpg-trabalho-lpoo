@@ -30,11 +30,12 @@ public class SalaItem extends Sala{
         //ler a resposta em op;
 
         if(op==1){
-            if(heroi.QuantidadeItens()<5){
-                heroi.setItens(ferramenta);
+            if(heroi.QuantidadePocoes()<5){
+                //condicional de ser poçao ou ser arma
+
             }else{
                 //imprimir que a lista está cheia
-                heroi.ImprimirItens();
+                heroi.ImprimirPocoes();
                 //deseja trocar? 1-sim 0-nao(le o resultado em op)
                 if(op==1){
                     //dar a opção de dar o numero item q deseja trocar
