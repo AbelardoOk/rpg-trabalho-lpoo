@@ -14,11 +14,12 @@ import java.util.List;
 
 public class BattleController {
     private Screen screen;
-    	private TextGraphics tg;
-    	private BattleScreen bs;
-    	private Personagem heroi;
-    	private Monstro inimigo;
-		private SwingTerminalFrame terminal;
+	private TextGraphics tg;
+	private BattleScreen bs;
+	private Personagem heroi;
+	private Monstro inimigo;
+	private SwingTerminalFrame terminal;
+	private int OpcaoSelecionada = 0;
 
 	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal) {
         	this.screen = screen;
@@ -34,7 +35,7 @@ public class BattleController {
 
 		while(heroi.estaVivo() && inimigo.estaVivo()) {
 			screen.clear();
-			bs.draw(tg, heroi, inimigo, lista);
+			bs.draw(tg, heroi, inimigo, lista, OpcaoSelecionada);
 			screen.refresh();
 
 			KeyStroke key = screen.readInput();
@@ -42,20 +43,19 @@ public class BattleController {
 			if (key == null) {continue;}
 
 			switch (key.getKeyType()) {
-				case Character:
-				 	char c = key.getCharacter();
-					if (c == '1') {
-						System.out.println("Ataca");
-						heroi.atacar(inimigo);
-					}
-					else if (c == '2') {
-						heroi.defender();
-					}
-			
-					if (inimigo.estaVivo() && (c == '1' || c == '1')) {
-						inimigo.atacar(heroi);
-        			}
-					break;
+				case ArrowUp:
+                    OpcaoSelecionada--;
+                    if (OpcaoSelecionada < 0) OpcaoSelecionada = 1;
+                    break;
+
+                case ArrowDown:
+                    OpcaoSelecionada++;
+                    if (OpcaoSelecionada > 1) OpcaoSelecionada = 0;
+                    break;
+
+                case Enter:
+                    Acao();
+                    break;
 
 				case Escape:
 					screen.stopScreen();
@@ -71,6 +71,22 @@ public class BattleController {
 		}
 		
 		return heroi.estaVivo();
+	}
+
+	private void Acao() {
+		switch (OpcaoSelecionada) {
+			case 0:
+				heroi.atacar(inimigo);
+				if (inimigo.estaVivo()) {inimigo.atacar(heroi);}
+				break;
+			case 1:
+				heroi.defender();
+				if (inimigo.estaVivo()) {inimigo.atacar(heroi);}
+				break;
+		
+			default:
+				break;
+		}
 	}
 
 }
