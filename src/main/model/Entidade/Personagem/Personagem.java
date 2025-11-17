@@ -2,13 +2,16 @@ package src.main.model.Entidade.Personagem;
 
 import src.main.model.Entidade.Entidade;
 import src.main.model.Item.pocao.*;
+import src.main.model.Item.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Personagem extends Entidade {
     private int experiencia;
+    private Arma arma;
     ArrayList<Pocao> pocoes=new ArrayList<>();
+
 
     public void setExperiencia(int exp) { this.experiencia = exp; }
     public int getExperiencia() { return experiencia; }
@@ -19,6 +22,13 @@ public class Personagem extends Entidade {
 
     public int QuantidadePocoes(){
       return this.pocoes.size();
+    }
+     public void setArma(Arma arma){
+        this.arma=arma;
+    }
+
+    public Arma getArma(){
+      return this.arma;
     }
 
     public String ImprimirPocoes(){ //retorna uma string por causa da interface
