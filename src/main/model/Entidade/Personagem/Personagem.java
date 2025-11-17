@@ -61,9 +61,9 @@ public class Personagem extends Entidade {
         int dano = gerador.nextInt(getDefesa()) * getForca();
         if(!defender()){
           entidade.recebeDano(dano);
-          System.out.println(super.getNome() + " recebeu " + dano + " de dano\n");
+          System.out.println(entidade.getNome() + " recebeu " + dano + " de dano\n");
         } else{
-          System.out.println(super.getNome() +  " se esquivou do ataque\n");
+          System.out.println(entidade.getNome() +  " se esquivou do ataque\n");
         }
     };
 }
