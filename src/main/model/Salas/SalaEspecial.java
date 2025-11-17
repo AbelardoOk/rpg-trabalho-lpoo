@@ -20,7 +20,7 @@ public class SalaEspecial extends Sala{
         
         Random gerador= new Random();
         if(gerador.nextInt(10)>5){
-            heroi.setVida(modificadorVida);
+            heroi.setVidaAtual(modificadorVida);
             setNome("Sala de Cura");
         }
         else{

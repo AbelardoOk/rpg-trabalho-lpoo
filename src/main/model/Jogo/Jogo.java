@@ -29,7 +29,6 @@ public class Jogo {
       if (heroiEstaVivo) {
         this.monstrosDerrotados++;
           this.faseAtual++;
-          if(heroi.getVida() < 50) {heroi.curar();}
           heroi.evoluir(gerador.nextInt(faseAtual) * 100); // Checar se desse jeito está bom
           System.out.println(heroi.getNome() + " avança para a próxima fase...");
       }
@@ -46,8 +45,8 @@ public class Jogo {
       while(heroi.estaVivo() && inimigo.estaVivo()){
         System.out.println("\n--- Turno " + turno + " ---");
 
-        System.out.println(heroi.getNome() + " (Vida: " + heroi.getVida() + ")");
-        System.out.println(inimigo.getNome() + " (Vida: " + inimigo.getVida() + ")");
+        System.out.println(heroi.getNome() + " (Vida: " + heroi.getVidaAtual() + ")");
+        System.out.println(inimigo.getNome() + " (Vida: " + inimigo.getVidaAtual() + ")");
 
         heroi.atacar(inimigo);
             
