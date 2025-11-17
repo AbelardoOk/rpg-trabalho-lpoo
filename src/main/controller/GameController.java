@@ -2,7 +2,6 @@ package src.main.controller;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 //
 import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger;
 import com.googlecode.lanterna.TerminalSize;
@@ -12,7 +11,6 @@ import com.googlecode.lanterna.terminal.swing.TerminalEmulatorColorConfiguration
 import java.awt.Font;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 //
-import com.googlecode.lanterna.terminal.Terminal; 
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
