@@ -25,7 +25,7 @@ public class Personagem extends Entidade {
       String texto;
       int cont=1;
       if (this.itens.isEmpty()) {
-        return "O carrinho está vazio.";
+        return "O inventário está vazio.";
       }else{
         texto=getNome()+" possui os seguinte(s) item(ns): \n";
         for(Item aux:itens){
@@ -46,7 +46,6 @@ public class Personagem extends Entidade {
       setDefesa(defesa);
     }
 
-    //public void curar(){}
 
     public void evoluir(int exp){
       setExperiencia(getExperiencia() + exp);

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import src.main.model.Entidade.Personagem.Personagem;
 import src.main.model.Item.*;
+import src.main.model.Item.pocao.PocaoCura;
 
 public class SalaItem extends Sala{
     Item ferramenta;
