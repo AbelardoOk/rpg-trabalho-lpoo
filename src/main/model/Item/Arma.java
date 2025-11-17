@@ -6,18 +6,10 @@ public class Arma  extends Item{
     private int dano;
     private int quantiaUsos;
 
-
-    public void setDano(int dano) {
-        this.dano = dano;
-    }
-
     public int getDano() {
         return this.dano;
     }
-
-    public void setQuantiaUsos(int quantiaUsos){
-        this.quantiaUsos=quantiaUsos;
-    }
+    
     public int getQuantiaUsos(){
         return this.quantiaUsos;
     }
