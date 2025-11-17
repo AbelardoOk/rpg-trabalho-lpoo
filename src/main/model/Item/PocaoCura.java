@@ -1,7 +1,8 @@
-package src.Item;
+package src.main.model.Item;
 
-import src.Entidade.Entidade;
 import java.util.Random;
+
+import src.main.model.Entidade.Entidade;
 
 public class PocaoCura extends Item {
   private int eficacia;
@@ -16,14 +17,20 @@ public class PocaoCura extends Item {
 
   public void consumir(Entidade p){
     float vida;
-    vida=p.getVida() + getEficacia();
-    if(vida>100){
-      vida=vida-100;
-      p.setVida(vida);
+    vida=p.getVidaAtual() + getEficacia();
+    if(vida>p.getVidaMaxima()){
+      vida=vida-p.getVidaMaxima();
+      p.setVidaAtual(vida);
     }else{
-      p.setVida(vida);
+      p.setVidaAtual(vida);
     }
     
+  }
+
+  
+  @Override 
+  public String toString() {
+    return super.toString()+" Vida Maxima Curada:"+ this.eficacia+"\n";
   }
 
   public PocaoCura(){

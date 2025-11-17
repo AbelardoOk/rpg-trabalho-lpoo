@@ -1,8 +1,8 @@
-package src.Entidade.Monstro;
+package src.main.model.Entidade.Monstro;
 
 import java.util.Random;
 
-import src.Entidade.Entidade;
+import src.main.model.Entidade.Entidade;
 
 public class Monstro extends Entidade {
     private static int base_Atributo = (int) (Math.random() * 10);
@@ -12,18 +12,20 @@ public class Monstro extends Entidade {
     }
 
     public Monstro(String nome, int nivel) {
-      super(nome);
+      super(nome, nivel);
 
       if(nivel%3==0) {
           setForca(getBase_Atributo() * (nivel+3));
           setNivel(1);
-          setVida(Math.round(getBase_Atributo()* 0.5 *(nivel+3)));
+          setVidaMaxima((Math.round(getBase_Atributo()* 0.5 *(nivel+3))));
+          setVidaAtual(getVidaMaxima());
           setDefesa(getBase_Atributo() *(nivel+3));
       }
       else{
           setForca(getBase_Atributo() * nivel);
           setNivel(1);
-          setVida(Math.round(getBase_Atributo()* 0.5 * nivel));
+          setVidaMaxima(Math.round(getBase_Atributo()* 0.5 * nivel));
+          setVidaAtual(getVidaMaxima());
           setDefesa(getBase_Atributo() * nivel);
 
       }

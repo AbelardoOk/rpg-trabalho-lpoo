@@ -1,7 +1,8 @@
-package src.Salas;
-import src.Entidade.Monstro.Monstro;
-import src.Entidade.Personagem.Personagem;
+package src.main.model.Salas;
 import java.util.Scanner;
+
+import src.main.model.Entidade.Monstro.Monstro;
+import src.main.model.Entidade.Personagem.Personagem;
 
 public class SalaMonstro extends Sala{
 
@@ -16,7 +17,7 @@ public class SalaMonstro extends Sala{
         Monstro inimigo = new Monstro("Gollum",heroi.getNivel());
 
         System.out.println("\n=======================");
-        System.out.println("      FASE " + heroi.getVida());
+        System.out.println("      FASE " + heroi.getVidaAtual());
         System.out.println("=======================");
 
         inimigo.atacar(heroi);
@@ -44,11 +45,11 @@ public class SalaMonstro extends Sala{
                     if(escolha==1){
                         heroi.atacar(inimigo);
                         if (inimigo.estaVivo()) {
-                            System.out.println(inimigo.getNome() + " Vida: "+ inimigo.getVida() + ".");
+                            System.out.println(inimigo.getNome() + " Vida: "+ inimigo.getVidaAtual() + ".");
                             inimigo.atacar(heroi);
-                            System.out.println(heroi.getNome() + " Vida: "+ heroi.getVida() + ".");
+                            System.out.println(heroi.getNome() + " Vida: "+ heroi.getVidaAtual() + ".");
                         } else{
-                            System.out.println(heroi.getNome() + " Vida: "+ heroi.getVida() + ".");
+                            System.out.println(heroi.getNome() + " Vida: "+ heroi.getVidaAtual() + ".");
                             System.out.println(inimigo.getNome()+" saiu derrotado!");
                     }
 

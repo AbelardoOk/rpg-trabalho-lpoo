@@ -1,4 +1,4 @@
-package src.Item;
+package src.main.model.Item;
 
 import java.util.Random;
 
@@ -22,6 +22,10 @@ public class Arma  extends Item{
         return this.quantiaUsos;
     }
 
+    @Override 
+    public String toString() {
+        return super.toString()+" Dano Maximo:"+ this.dano+"\nQuantidade de usos restantes:"+this.quantiaUsos+"/n";
+    }
 
     public Arma(){
         setNome("Arma");
@@ -31,5 +35,7 @@ public class Arma  extends Item{
         setQuantiaUsos(gerador.nextInt(50));
 
     }
+
+
 
 }
