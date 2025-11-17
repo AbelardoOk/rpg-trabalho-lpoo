@@ -51,12 +51,17 @@ public class Personagem extends Entidade {
       setExperiencia(getExperiencia() + exp);
       if(getExperiencia() > 100){
         System.out.println(super.getNome() + " evoluiu um nível!");
+        setNivel(1);
+        setForca(50);
+        setDefesa(10);
+        setVidaMaxima(getNivel()*2);
         setExperiencia(getExperiencia() - 100);
         // Sistema para melhorar atributos
       }
     }
 
     public void atacar(Entidade entidade){
+
         Random gerador = new Random();
         int dano = gerador.nextInt(getDefesa()) * getForca();
         if(!defender()){
