@@ -31,7 +31,7 @@ public class GameController {
 	private TextGraphics tg;
     private SwingTerminalFrame terminal;
 	private Personagem heroi;
-	private int level=0;
+	private int level=1;
 
     private MenuController menuController;
     //private PathController pathController;
@@ -71,14 +71,14 @@ public class GameController {
         
         //Temporário
         this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
-
-        //this.currentState = GameState.MAIN_MENU; 
+ 
         this.currentState = GameState.MAIN_MENU; 
     }
 
     public void run() throws java.io.IOException  {
-        while(level < 1 && heroi.estaVivo()) {
-            Monstro inimigo = new Monstro("MU", 1);
+        while(level < 10 && heroi.estaVivo()) {
+            Monstro inimigo = new Monstro("Monstro", level);
+            System.out.println("AQui  " + level);
 
             switch (this.currentState) {
                 case IN_BATTLE:
@@ -96,16 +96,17 @@ public class GameController {
                     menuController = new MenuController(screen, tg, menuScreen, terminal);
                     boolean iniciar = menuController.run();
 
-                    if (iniciar) {this.currentState = GameState.IN_BATTLE;}
+                    if (iniciar) {this.currentState = GameState.PATH_CHOICE;}
                     
                     break;
-                    
+
                 case PATH_CHOICE:
                     break;
 
                 case GAME_OVER:
                     break;
             }
+            level ++;
 		}
 		this.screen.stopScreen();
         
