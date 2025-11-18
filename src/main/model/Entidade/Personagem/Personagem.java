@@ -10,6 +10,7 @@ import java.util.Random;
 public class Personagem extends Entidade {
     private int experiencia;
     private Arma arma;
+    private Random rand = new Random();
     ArrayList<Pocao> pocoes=new ArrayList<>();
 
 
@@ -31,7 +32,7 @@ public class Personagem extends Entidade {
       return this.arma;
     }
 
-    public String ImprimirPocoes(){ //retorna uma string por causa da interface
+    public String ImprimirPocoes(){
       String texto;
       int cont=1;
       if (this.pocoes.isEmpty()) {
@@ -59,21 +60,28 @@ public class Personagem extends Entidade {
 
     public void evoluir(int exp){
       setExperiencia(getExperiencia() + exp);
-      if(getExperiencia() > 100){
-        System.out.println(super.getNome() + " evoluiu um nível!");
-        setNivel(1);
-        setForca(50);
-        setDefesa(10);
-        setVidaMaxima(getNivel()*2);
+
+      while(getExperiencia() >= 100){
+        setNivel(getNivel() + 1);
         setExperiencia(getExperiencia() - 100);
-        // Sistema para melhorar atributos
+
+        int minGanho = (getNivel() / 2) + 1;
+        int maxGanho = getNivel();
+        int range = maxGanho - minGanho + 1;
+
+        int ganhoForca = rand.nextInt(range) + minGanho;
+        int ganhoDefesa = rand.nextInt(range) + minGanho;
+        int ganhoVida = rand.nextInt(range) + minGanho;
+
+        setForca(getForca() + ganhoForca);
+        setDefesa(getDefesa() + ganhoDefesa);
+        setVidaMaxima(getVidaMaxima() + ganhoVida);
+
       }
     }
 
     public void atacar(Entidade entidade){
-
-        Random gerador = new Random();
-        int dano = gerador.nextInt(getDefesa()) * getForca();
+        int dano = rand.nextInt(getDefesa()) * getForca();
         if(!defender()){
           entidade.recebeDano(dano);
           System.out.println(entidade.getNome() + " recebeu " + dano + " de dano\n");
