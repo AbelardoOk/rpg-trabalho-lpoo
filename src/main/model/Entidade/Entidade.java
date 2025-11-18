@@ -19,9 +19,9 @@ public abstract class Entidade {
     public float getVidaMaxima() { return vida_maxima; }
     public float getVidaAtual() { return vida_atual; }
 
-    public void setDefesa(int defesa) { this.defesa = defesa; }
-    public void setForca(int forca) { this.forca = forca; }
-    public void setNivel(int nivel) { this.nivel = nivel; }
+    public void setDefesa(int defesa) { this.defesa += defesa; }
+    public void setForca(int forca) { this.forca += forca; }
+    public void setNivel(int nivel) { this.nivel += nivel; }
     public void setNome(String nome) { this.nome = nome; }
     public void setVidaMaxima(float vida) { this.vida_maxima = vida; }
     public void setVidaAtual(float vida) { this.vida_atual = vida; }

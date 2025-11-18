@@ -34,11 +34,12 @@ public class Monstro extends Entidade {
     public String atacar(Entidade entidade){
         Random gerador = new Random();
         float dano = gerador.nextInt(getDefesa()) * getForca();
+        System.out.println(this.getNome() + " atacou com força " + dano + " de dano\n");
         if(!defender()){
           entidade.recebeDano(dano);
-          return super.getNome() + " recebeu " + dano + " de dano\n";
+          return entidade.getNome() + " recebeu " + dano + " de dano\n";
         } else{
-          return super.getNome() +  " se esquivou do ataque\n";
+          return entidade.getNome() + " se esquivou do ataque!\n";
         }
     }
 }

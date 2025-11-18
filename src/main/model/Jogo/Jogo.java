@@ -29,7 +29,10 @@ public class Jogo {
       if (heroiEstaVivo) {
         this.monstrosDerrotados++;
           this.faseAtual++;
-          heroi.evoluir(gerador.nextInt(faseAtual) * 100); // Checar se desse jeito está bom
+
+          int xpBase = this.faseAtual * 50;
+          int bonusSorte = gerador.nextInt(50);
+          heroi.evoluir(xpBase + bonusSorte);
           System.out.println(heroi.getNome() + " avança para a próxima fase...");
       }
     }
