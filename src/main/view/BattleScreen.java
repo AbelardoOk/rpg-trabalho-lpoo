@@ -17,11 +17,17 @@ public class BattleScreen {
         tg.putString(32, 4, "Nome: " + inimigo.getNome());
         tg.putString(32, 5, "HP = " + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima());
 
-        //Adcionar os logs
+        if (logMessages.isEmpty() != true) {
+            tg.putString(5,7, logMessages.get(0));
+            logMessages.remove(0);
+            tg.putString(5,8, logMessages.get(0));
+            logMessages.remove(0);
+        }
 
         tg.putString(5, 10, "== AÇÕES ==");
         tg.putString(5, 11, (OpcaoSelecionada == 0 ? ">" : " ") + " Atacar");
         tg.putString(5, 12, (OpcaoSelecionada == 1 ? ">" : " ") + " Defender");
 
-    }
+        
+    }   
 }

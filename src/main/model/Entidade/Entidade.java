@@ -26,7 +26,7 @@ public abstract class Entidade {
     public void setVidaMaxima(float vida) { this.vida_maxima = vida; }
     public void setVidaAtual(float vida) { this.vida_atual = vida; }
 
-    public abstract void atacar(Entidade entidade);
+    public abstract String atacar(Entidade entidade);
 
     public Entidade(String nome, int nivel){
         this.nome = nome;

@@ -20,6 +20,8 @@ public class BattleController {
 	private Monstro inimigo;
 	private SwingTerminalFrame terminal;
 	private int OpcaoSelecionada = 0;
+	private String log;
+	List<String> lista = new ArrayList<>();
 
 	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal) {
         	this.screen = screen;
@@ -31,7 +33,7 @@ public class BattleController {
     	}
 
     public boolean run() throws java.io.IOException {
-        List<String> lista = new ArrayList<>(); //remover
+         
 
 		while(heroi.estaVivo() && inimigo.estaVivo()) {
 			screen.clear();
@@ -75,13 +77,15 @@ public class BattleController {
 
 	private void Acao() {
 		switch (OpcaoSelecionada) {
+			
 			case 0:
-				heroi.atacar(inimigo);
-				if (inimigo.estaVivo()) {inimigo.atacar(heroi);}
+				log = heroi.atacar(inimigo);
+				lista.add(log);
+				if (inimigo.estaVivo()) {log = inimigo.atacar(heroi); lista.add(log);}
 				break;
 			case 1:
 				heroi.defender();
-				if (inimigo.estaVivo()) {inimigo.atacar(heroi);}
+				if (inimigo.estaVivo()) {inimigo.atacar(heroi); lista.add(log);}
 				break;
 		
 			default:
