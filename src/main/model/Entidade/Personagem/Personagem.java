@@ -81,7 +81,11 @@ public class Personagem extends Entidade {
     }
 
     public String atacar(Entidade entidade){
-        int dano = rand.nextInt(getDefesa()) * getForca();
+        int danobase = getForca(); // da pra colocar dano da arma aqui, se tiver arma.
+        int variacao = rand.nextInt(Math.max(1, danobase / 5));
+        int dano = variacao + danobase;
+
+        System.out.println(this.getNome() + " atacou com força " + dano + " de dano");
         if(!defender()){
           entidade.recebeDano(dano);
           return String.format("%s Atacou com %d de dano (%s PERDE %d)", super.getNome(), dano, entidade.getNome(), dano);

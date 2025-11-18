@@ -6,6 +6,7 @@ import src.main.model.Entidade.Entidade;
 
 public class Monstro extends Entidade {
     private static int base_Atributo = (int) (Math.random() * 10);
+    private Random rand = new Random();
 
     public int getBase_Atributo() {
         return base_Atributo;
@@ -32,10 +33,12 @@ public class Monstro extends Entidade {
     }
 
     public String atacar(Entidade entidade){
-        Random gerador = new Random();
-        int dano = gerador.nextInt(getDefesa()) * getForca();
+        int danobase = getForca();
+        int variacao = rand.nextInt(Math.max(1, danobase / 5));
+        int dano = variacao + danobase;
+
         System.out.println(this.getNome() + " atacou com força " + dano + " de dano\n");
-        if(!defender()){
+        if(defender()){
           entidade.recebeDano(dano);
           return String.format("%s Atacou com %d de dano (%s PERDE %d)", super.getNome(), dano, entidade.getNome(), dano);
         } else{
