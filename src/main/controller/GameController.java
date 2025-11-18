@@ -16,8 +16,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import src.main.model.Entidade.Personagem.Personagem;
 import src.main.model.Entidade.Monstro.Monstro;
-import src.main.view.BattleScreen;
-import src.main.view.MenuScreen;
+import src.main.view.*;
 
 public class GameController {
     public enum GameState {
@@ -36,9 +35,11 @@ public class GameController {
     private MenuController menuController;
     //private PathController pathController;
     private BattleController battleController; 
+    private GameOverController gameoverController; 
     
     private BattleScreen battleScreen; 
     private MenuScreen menuScreen;
+    private GameOverScreen gameoverScreen;
 
     private GameState currentState;
 
@@ -68,6 +69,7 @@ public class GameController {
 
         this.battleScreen = new BattleScreen();
         this.menuScreen = new MenuScreen();
+        this.gameoverScreen = new GameOverScreen();
         
         //Temporário
         this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
@@ -76,7 +78,7 @@ public class GameController {
     }
 
     public void run() throws java.io.IOException  {
-        while(level < 10 && heroi.estaVivo()) {
+        while(level < 100) {
             Monstro inimigo = new Monstro("Monstro", level);
             System.out.println("AQui  " + level);
 
@@ -85,8 +87,9 @@ public class GameController {
                     battleController = new BattleController(screen, tg, battleScreen, heroi, inimigo, terminal);
                     boolean heroiVenceu = battleController.run();
 
+                    System.out.println(heroiVenceu);
                     if (heroiVenceu) {
-                        this.currentState = GameState.PATH_CHOICE;
+                        this.currentState = GameState.IN_BATTLE;
                     } else {
                         this.currentState = GameState.GAME_OVER;
                     }
@@ -96,7 +99,7 @@ public class GameController {
                     menuController = new MenuController(screen, tg, menuScreen, terminal);
                     boolean iniciar = menuController.run();
 
-                    if (iniciar) {this.currentState = GameState.PATH_CHOICE;}
+                    if (iniciar) {this.currentState = GameState.IN_BATTLE;}
                     
                     break;
 
@@ -104,6 +107,9 @@ public class GameController {
                     break;
 
                 case GAME_OVER:
+                    System.out.println("Chego aqui");
+                    gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal);
+                    gameoverController.run();
                     break;
             }
             level ++;
@@ -111,7 +117,7 @@ public class GameController {
 		this.screen.stopScreen();
         
         if (heroi.estaVivo()) {
-                System.out.println("Voce Venceu!");
+            System.out.println("Voce Venceu!");
         } else {
             System.out.println("Cabo.");
         }

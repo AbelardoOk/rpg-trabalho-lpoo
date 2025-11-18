@@ -78,7 +78,7 @@ public class MenuController {
 		}
 	}
 
-    private void encerrar()  {
+    public void encerrar()  {
         try {
             screen.stopScreen();
             terminal.close();
