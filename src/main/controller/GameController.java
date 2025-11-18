@@ -17,13 +17,14 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import src.main.model.Entidade.Personagem.Personagem;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.BattleScreen;
+import src.main.view.MenuScreen;
 
 public class GameController {
     public enum GameState {
-        //MAIN_MENU,
-        //PATH_CHOICE,
-        IN_BATTLE
-        //GAME_OVER
+        MAIN_MENU,
+        PATH_CHOICE,
+        IN_BATTLE,
+        GAME_OVER
     }
 
     private Screen screen;
@@ -32,11 +33,12 @@ public class GameController {
 	private Personagem heroi;
 	private int level=0;
 
-    //private MenuController menuController;
+    private MenuController menuController;
     //private PathController pathController;
     private BattleController battleController; 
     
     private BattleScreen battleScreen; 
+    private MenuScreen menuScreen;
 
     private GameState currentState;
 
@@ -65,12 +67,13 @@ public class GameController {
         this.tg = this.screen.newTextGraphics();
 
         this.battleScreen = new BattleScreen();
+        this.menuScreen = new MenuScreen();
         
         //Temporário
         this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
 
         //this.currentState = GameState.MAIN_MENU; 
-        this.currentState = GameState.IN_BATTLE; 
+        this.currentState = GameState.MAIN_MENU; 
     }
 
     public void run() throws java.io.IOException  {
@@ -83,11 +86,24 @@ public class GameController {
                     boolean heroiVenceu = battleController.run();
 
                     if (heroiVenceu) {
-                        //Escolhe o caminho.
+                        this.currentState = GameState.PATH_CHOICE;
                     } else {
-                        //Vai pra tela de perdeu;
+                        this.currentState = GameState.GAME_OVER;
                     }
                     
+                    break;
+                case MAIN_MENU:
+                    menuController = new MenuController(screen, tg, menuScreen, terminal);
+                    boolean iniciar = menuController.run();
+
+                    if (iniciar) {this.currentState = GameState.IN_BATTLE;}
+                    
+                    break;
+                    
+                case PATH_CHOICE:
+                    break;
+
+                case GAME_OVER:
                     break;
             }
 		}
