@@ -21,15 +21,17 @@ public class BattleController {
 	private SwingTerminalFrame terminal;
 	private int OpcaoSelecionada = 0;
 	private String log;
+	private int nivel;
 	List<String> lista = new ArrayList<>();
 
-	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal) {
+	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal, int nivel) {
         	this.screen = screen;
         	this.tg = tg;
         	this.bs = bs;
         	this.heroi = heroi;
         	this.inimigo = inimigo;
 			this.terminal = terminal;
+			this.nivel = nivel;
     	}
 
     public boolean run() throws java.io.IOException {
@@ -37,7 +39,7 @@ public class BattleController {
 
 		while(heroi.estaVivo() && inimigo.estaVivo()) {
 			screen.clear();
-			bs.draw(tg, heroi, inimigo, lista, OpcaoSelecionada);
+			bs.draw(tg, heroi, inimigo, lista, OpcaoSelecionada, nivel);
 			screen.refresh();
 
 			KeyStroke key = screen.readInput();

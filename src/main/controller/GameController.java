@@ -15,6 +15,7 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import src.main.model.Entidade.Personagem.Personagem;
+import src.main.model.Salas.SalaMonstro;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.*;
 
@@ -31,15 +32,18 @@ public class GameController {
     private SwingTerminalFrame terminal;
 	private Personagem heroi;
 	private int level=1;
+    private boolean batalhou=false;
 
     private MenuController menuController;
-    //private PathController pathController;
+    private PathController pathController;
     private BattleController battleController; 
     private GameOverController gameoverController; 
     
     private BattleScreen battleScreen; 
     private MenuScreen menuScreen;
     private GameOverScreen gameoverScreen;
+    private PathBattleScreen pathbattleScreen;
+    private PathScreen pathScreen;
 
     private GameState currentState;
 
@@ -70,6 +74,8 @@ public class GameController {
         this.battleScreen = new BattleScreen();
         this.menuScreen = new MenuScreen();
         this.gameoverScreen = new GameOverScreen();
+        this.pathbattleScreen = new PathBattleScreen();
+        this.pathScreen = new PathScreen();
         
         //Temporário
         this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
@@ -78,41 +84,58 @@ public class GameController {
     }
 
     public void run() throws java.io.IOException  {
-        while(level < 100) {
-            Monstro inimigo = new Monstro("Monstro", level);
-            System.out.println("AQui  " + level);
+        Monstro inimigo = new Monstro("Teste", 1);
 
+        while(level < 100) {
             switch (this.currentState) {
                 case IN_BATTLE:
-                    battleController = new BattleController(screen, tg, battleScreen, heroi, inimigo, terminal);
+                    battleController = new BattleController(screen, tg, battleScreen, heroi, inimigo, terminal, level);
                     boolean heroiVenceu = battleController.run();
 
                     System.out.println(heroiVenceu);
                     if (heroiVenceu) {
-                        this.currentState = GameState.IN_BATTLE;
+                        batalhou = true;
+                        this.currentState = GameState.PATH_CHOICE;
                     } else {
                         this.currentState = GameState.GAME_OVER;
                     }
                     
+                    level ++;
                     break;
                 case MAIN_MENU:
                     menuController = new MenuController(screen, tg, menuScreen, terminal);
                     boolean iniciar = menuController.run();
 
-                    if (iniciar) {this.currentState = GameState.IN_BATTLE;}
+                    if (iniciar) {this.currentState = GameState.PATH_CHOICE;}
                     
                     break;
 
                 case PATH_CHOICE:
+                    if (batalhou) {  //Mensagem de Vitória
+                        pathController = new PathController(screen, tg, null, pathbattleScreen, heroi, terminal); 
+                        batalhou = false;
+                    }
+                    else { //Sem mensagem adicional
+                        pathController = new PathController(screen, tg, pathScreen, null, heroi, terminal);
+                    }
+                    String path_escolhido = pathController.run();
+
+                    if (path_escolhido.equals("IN_BATTLE")) {
+                        this.currentState = GameState.IN_BATTLE;
+                        SalaMonstro salamonstro = new SalaMonstro();
+                        inimigo =  salamonstro.criar_monstro(heroi);
+                    }
+                    else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala item
+                    else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala especial
+                    
+
                     break;
 
                 case GAME_OVER:
-                    System.out.println("Chego aqui");
                     gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal);
                     gameoverController.run();
                     break;
             }
-            level ++;
 		}
 		this.screen.stopScreen();
         
