@@ -10,7 +10,7 @@ public class PocaoCura extends Pocao {
     float vida;
     vida=p.getVidaAtual() + getEficacia();
     if(vida>p.getVidaMaxima()){
-      vida=vida-p.getVidaMaxima();
+      vida=p.getVidaMaxima();
       p.setVidaAtual(vida);
     }else{
       p.setVidaAtual(vida);

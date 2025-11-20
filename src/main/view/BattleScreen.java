@@ -53,7 +53,7 @@ public class BattleScreen {
 
         tg.putString(5, 11, "== AÇÕES ==");
         tg.putString(5, 12, (OpcaoSelecionada == 0 ? ">" : " ") + " Atacar");
-        tg.putString(5, 13, (OpcaoSelecionada == 1 ? ">" : " ") + " Defender");
+        tg.putString(5, 13, (OpcaoSelecionada == 1 ? ">" : " ") + " Inventário");
 
         
     }   

@@ -16,6 +16,9 @@ public class Personagem extends Entidade {
 
     public void setExperiencia(int exp) { this.experiencia = exp; }
     public int getExperiencia() { return experiencia; }
+    
+    public ArrayList<Pocao> getPocoes() {return this.pocoes;}
+    public void setPocoes(ArrayList<Pocao> p) {this.pocoes = p;}
 
     public void setPocoes(Pocao pocao){
       this.pocoes.add(pocao);  
@@ -94,13 +97,12 @@ public class Personagem extends Entidade {
     }
 
     public String atacar(Entidade entidade){
-        int danobaseTotal = arma.getDano() + this.getForca();
+        int danobaseTotal = 1 + this.getForca(); // int danobaseTotal = arma.getDano() + this.getForca();
 
         int variacaoMaxima = Math.max(1, danobaseTotal / 8);
         int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
         int dano = Math.max(1, variacao + danobaseTotal);
 
-        System.out.println(this.getNome() + " atacou com força " + dano + " de dano");
         if(!defender()){
           entidade.recebeDano(dano);
           return String.format("%s Atacou com %d de dano (%s PERDE %d)", super.getNome(), dano, entidade.getNome(), dano);

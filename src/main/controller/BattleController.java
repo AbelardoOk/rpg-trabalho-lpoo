@@ -8,6 +8,8 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 import src.main.model.Entidade.Personagem.Personagem;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.BattleScreen;
+import src.main.view.InventoryScreen;
+import src.main.model.Item.pocao.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class BattleController {
     private Screen screen;
 	private TextGraphics tg;
 	private BattleScreen bs;
+	private InventoryScreen is;
 	private Personagem heroi;
 	private Monstro inimigo;
 	private SwingTerminalFrame terminal;
@@ -24,10 +27,11 @@ public class BattleController {
 	private int nivel;
 	List<String> lista = new ArrayList<>();
 
-	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal, int nivel) {
+	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, InventoryScreen is, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal, int nivel) {
         	this.screen = screen;
         	this.tg = tg;
         	this.bs = bs;
+			this.is = is;
         	this.heroi = heroi;
         	this.inimigo = inimigo;
 			this.terminal = terminal;
@@ -35,8 +39,8 @@ public class BattleController {
     	}
 
     public boolean run() throws java.io.IOException {
+        System.out.println(heroi.getVidaMaxima() + "  " + inimigo.getVidaMaxima());
          
-
 		while(heroi.estaVivo() && inimigo.estaVivo()) {
 			screen.clear();
 			bs.draw(tg, heroi, inimigo, lista, OpcaoSelecionada, nivel);
@@ -71,13 +75,13 @@ public class BattleController {
 					break;
 			}
 
-			
+
 		}
 		
 		return heroi.estaVivo();
 	}
 
-	private void Acao() {
+	private void Acao() throws java.io.IOException {
 		switch (OpcaoSelecionada) {
 			
 			case 0:
@@ -86,8 +90,10 @@ public class BattleController {
 				if (inimigo.estaVivo()) {log = inimigo.atacar(heroi); lista.add(log);}
 				break;
 			case 1:
-				heroi.defender();
-				if (inimigo.estaVivo()) {inimigo.atacar(heroi); lista.add(log);}
+				InventoryController inventoryController = new InventoryController(screen, tg, is, heroi, terminal);
+				ArrayList<Pocao> p = new ArrayList<>();
+				p = inventoryController.run();
+				heroi.setPocoes(p);
 				break;
 		
 			default:

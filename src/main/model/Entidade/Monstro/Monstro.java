@@ -30,6 +30,7 @@ public class Monstro extends Entidade {
 
       setForca(Math.max(1, forcaBase));
       setVidaMaxima(getVidaMaxima() + vidaBase);
+      setVidaAtual(getVidaMaxima());
       setDefesa(Math.max(1, defesaBase));
     }
 
@@ -39,7 +40,6 @@ public class Monstro extends Entidade {
         int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
         int dano = Math.max(1, variacao + danobase);
 
-        System.out.println(this.getNome() + " atacou com força " + dano + " de dano\n");
         if(defender()){
           entidade.recebeDano(dano);
           return String.format("%s Atacou com %d de dano (%s PERDE %d)", super.getNome(), dano, entidade.getNome(), dano);
