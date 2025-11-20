@@ -89,7 +89,7 @@ public class Personagem extends Entidade {
 
         int variacaoMaxima = Math.max(1, danobaseTotal / 8);
         int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
-        int dano = Math.max(1, variacao + danobase);
+        int dano = Math.max(1, variacao + danobaseTotal);
 
         System.out.println(this.getNome() + " atacou com força " + dano + " de dano");
         if(!defender()){

@@ -20,17 +20,16 @@ public class Monstro extends Entidade {
       float modificadorNivel = 1.0f;
 
       if(nivel%3==0) {
-          modificadorNivel = 1.5f
+          modificadorNivel = 1.5f;
       }
 
       int fatorNivel = Math.max(1, nivelBase);
-
       int forcaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 1.0f);
       int defesaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 0.8f);
       int vidaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 4.0f);
 
       setForca(Math.max(1, forcaBase));
-      setVida(Math.max(1, vidaBase));
+      setVidaMaxima(getVidaMaxima() + vidaBase);
       setDefesa(Math.max(1, defesaBase));
     }
 
@@ -38,7 +37,7 @@ public class Monstro extends Entidade {
         int danobase = getForca();
         int variacaoMaxima = Math.max(1, danobase / 5);
         int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
-        int dano = Math.max(variacao + danobase);
+        int dano = Math.max(1, variacao + danobase);
 
         System.out.println(this.getNome() + " atacou com força " + dano + " de dano\n");
         if(defender()){
