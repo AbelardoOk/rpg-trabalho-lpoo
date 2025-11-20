@@ -58,6 +58,7 @@ public class Personagem extends Entidade {
       setVidaAtual(100);
       setForca(10);
       setDefesa(10);
+      setArma(new Arma());
     }
 
     public Personagem(String nome, float vida_maxima, int forca, int nivel, int defesa, int experiencia) {
