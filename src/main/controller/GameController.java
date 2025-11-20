@@ -119,7 +119,7 @@ public class GameController {
                     String nome = characterController.run();
                     
                     this.heroi = new Personagem(nome);
-                    heroi.setPocoes(new PocaoCura());
+                    heroi.setPocoes(new PocaoCura(heroi.getNivel()));
 
                     this.currentState = GameState.PATH_CHOICE;
 

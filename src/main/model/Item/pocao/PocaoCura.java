@@ -24,10 +24,10 @@ public class PocaoCura extends Pocao {
     return super.toString()+" Vida Maxima Curada:"+ this.getEficacia()+"\n";
   }
 
-  public PocaoCura(){
+  public PocaoCura(int nivel){
     setNome("Pocao de Cura");
     Random gerador = new Random();
-    setEficacia(gerador.nextInt(50));
+    setEficacia(70+((gerador.nextInt(10)+5)*nivel)); 
   }
 
   
