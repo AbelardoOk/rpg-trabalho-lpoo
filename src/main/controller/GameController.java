@@ -23,6 +23,7 @@ import src.main.view.*;
 public class GameController {
     public enum GameState {
         MAIN_MENU,
+        CHARACTER,
         PATH_CHOICE,
         IN_BATTLE,
         GAME_OVER
@@ -39,6 +40,7 @@ public class GameController {
     private PathController pathController;
     private BattleController battleController; 
     private GameOverController gameoverController; 
+    private CharacterController characterController; 
     
     private BattleScreen battleScreen; 
     private MenuScreen menuScreen;
@@ -46,6 +48,7 @@ public class GameController {
     private PathBattleScreen pathbattleScreen;
     private PathScreen pathScreen;
     private InventoryScreen inventoryScreen;
+    private CharacterScreen characterScreen;
 
     private GameState currentState;
 
@@ -79,10 +82,7 @@ public class GameController {
         this.pathbattleScreen = new PathBattleScreen();
         this.pathScreen = new PathScreen();
         this.inventoryScreen = new InventoryScreen();
-        
-        //Temporário
-        this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
-        heroi.setPocoes(new PocaoCura());
+        this.characterScreen = new CharacterScreen();
  
         this.currentState = GameState.MAIN_MENU; 
     }
@@ -110,9 +110,18 @@ public class GameController {
                     menuController = new MenuController(screen, tg, menuScreen, terminal);
                     boolean iniciar = menuController.run();
 
-                    if (iniciar) {this.currentState = GameState.PATH_CHOICE;}
+                    if (iniciar) {this.currentState = GameState.CHARACTER;}
                     
                     break;
+                
+                case CHARACTER:
+                    characterController = new CharacterController(screen, tg, characterScreen, terminal);
+                    String nome = characterController.run();
+                    
+                    this.heroi = new Personagem(nome);
+                    heroi.setPocoes(new PocaoCura());
+
+                    this.currentState = GameState.PATH_CHOICE;
 
                 case PATH_CHOICE:
                     if (batalhou) {  //Mensagem de Vitória
