@@ -67,6 +67,7 @@ public class Personagem extends Entidade {
       setVidaAtual(vida_maxima);
       setForca(forca);
       setDefesa(defesa);
+      setArma(new Arma());
     }
 
 
@@ -97,7 +98,7 @@ public class Personagem extends Entidade {
     }
 
     public String atacar(Entidade entidade){
-        int danobaseTotal = 1 + this.getForca(); // int danobaseTotal = arma.getDano() + this.getForca();
+        int danobaseTotal = arma.getDano() + this.getForca();
 
         int variacaoMaxima = Math.max(1, danobaseTotal / 8);
         int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
