@@ -48,6 +48,15 @@ public class Personagem extends Entidade {
       }
     }
 
+    public Personagem(String nome){
+      super(nome, 1);
+      setExperiencia(1);
+      setVidaMaxima(100);
+      setVidaAtual(100);
+      setForca(10);
+      setDefesa(10);
+    }
+
     public Personagem(String nome, float vida_maxima, int forca, int nivel, int defesa, int experiencia) {
       super(nome, nivel);
       setExperiencia(experiencia);
