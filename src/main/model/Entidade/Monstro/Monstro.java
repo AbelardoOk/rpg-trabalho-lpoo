@@ -26,7 +26,7 @@ public class Monstro extends Entidade {
       int fatorNivel = Math.max(1, nivelBase);
       int forcaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 1.0f);
       int defesaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 0.8f);
-      int vidaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 4.0f);
+      int vidaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 2.0f);
 
       setForca(Math.max(1, forcaBase));
       setVidaMaxima(getVidaMaxima() + vidaBase);
