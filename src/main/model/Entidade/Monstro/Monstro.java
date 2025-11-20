@@ -5,7 +5,7 @@ import java.util.Random;
 import src.main.model.Entidade.Entidade;
 
 public class Monstro extends Entidade {
-    private static int base_Atributo = (int) (Math.random() * 10);
+    private int base_Atributo;
     private Random rand = new Random();
 
     public int getBase_Atributo() {
@@ -15,27 +15,30 @@ public class Monstro extends Entidade {
     public Monstro(String nome, int nivel) {
       super(nome, nivel);
 
-      if(nivel%3==0) {
-          setForca(getBase_Atributo() * (nivel+3));
-          setNivel(1);
-          setVidaMaxima((Math.round(getBase_Atributo()* 0.5 *(nivel+3))));
-          setVidaAtual(getVidaMaxima());
-          setDefesa(getBase_Atributo() *(nivel+3));
-      }
-      else{
-          setForca(getBase_Atributo() * nivel);
-          setNivel(1);
-          setVidaMaxima(Math.round(getBase_Atributo()* 0.5 * nivel));
-          setVidaAtual(getVidaMaxima());
-          setDefesa(getBase_Atributo() * nivel);
+      this.base_Atributo = 5 + rand.nextInt(10);
+      int nivelBase = nivel;
+      float modificadorNivel = 1.0f;
 
+      if(nivel%3==0) {
+          modificadorNivel = 1.5f
       }
+
+      int fatorNivel = Math.max(1, nivelBase);
+
+      int forcaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 1.0f);
+      int defesaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 0.8f);
+      int vidaBase = Math.round(this.base_Atributo * modificadorNivel * fatorNivel * 4.0f);
+
+      setForca(Math.max(1, forcaBase));
+      setVida(Math.max(1, vidaBase));
+      setDefesa(Math.max(1, defesaBase));
     }
 
     public String atacar(Entidade entidade){
         int danobase = getForca();
-        int variacao = rand.nextInt(Math.max(1, danobase / 5));
-        int dano = variacao + danobase;
+        int variacaoMaxima = Math.max(1, danobase / 5);
+        int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
+        int dano = Math.max(variacao + danobase);
 
         System.out.println(this.getNome() + " atacou com força " + dano + " de dano\n");
         if(defender()){
