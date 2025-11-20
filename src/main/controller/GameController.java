@@ -15,6 +15,7 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import src.main.model.Entidade.Personagem.Personagem;
+import src.main.model.Item.pocao.PocaoCura;
 import src.main.model.Salas.SalaMonstro;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.*;
@@ -44,6 +45,7 @@ public class GameController {
     private GameOverScreen gameoverScreen;
     private PathBattleScreen pathbattleScreen;
     private PathScreen pathScreen;
+    private InventoryScreen inventoryScreen;
 
     private GameState currentState;
 
@@ -76,9 +78,11 @@ public class GameController {
         this.gameoverScreen = new GameOverScreen();
         this.pathbattleScreen = new PathBattleScreen();
         this.pathScreen = new PathScreen();
+        this.inventoryScreen = new InventoryScreen();
         
         //Temporário
         this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
+        heroi.setPocoes(new PocaoCura());
  
         this.currentState = GameState.MAIN_MENU; 
     }
@@ -89,7 +93,7 @@ public class GameController {
         while(level < 100) {
             switch (this.currentState) {
                 case IN_BATTLE:
-                    battleController = new BattleController(screen, tg, battleScreen, heroi, inimigo, terminal, level);
+                    battleController = new BattleController(screen, tg, battleScreen, inventoryScreen, heroi, inimigo, terminal, level);
                     boolean heroiVenceu = battleController.run();
 
                     System.out.println(heroiVenceu);
