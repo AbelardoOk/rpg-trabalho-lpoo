@@ -19,7 +19,7 @@ public class SalaItem extends Sala{
     public void entrouSala(Personagem heroi){
         Random gerador=new Random();
         if(gerador.nextInt(10)>5){
-           setFerramenta(new PocaoCura());
+           setFerramenta(new PocaoCura(heroi.getNivel()));
         }else{
             setFerramenta(new Arma());
         }
