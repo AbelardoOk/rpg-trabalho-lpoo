@@ -1,5 +1,7 @@
 package src.main.model.Entidade.Monstro;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import src.main.model.Entidade.Entidade;
@@ -7,13 +9,38 @@ import src.main.model.Entidade.Entidade;
 public class Monstro extends Entidade {
     private static int base_Atributo = (int) (Math.random() * 10);
     private Random rand = new Random();
+    public static List<String> nomes = new ArrayList<>();
+    static{
+        nomes.add("Leviathan");
+        nomes.add("Medusa");
+        nomes.add("Beemote");
+        nomes.add("Godzilla");
+        nomes.add("Quimera ");
+        nomes.add("Strigoi");
+        nomes.add("Yokai");
+        nomes.add("Akuma");
+        nomes.add("Baba Yaga");
+        nomes.add("Asmodeus");
+        nomes.add("Belzebu");
+    }
+
+    private static String selecionarNomeRandom(){
+        Random  gerador = new Random();
+        return nomes.get(gerador.nextInt(nomes.size()));
+    }
+
 
     public int getBase_Atributo() {
         return base_Atributo;
     }
 
-    public Monstro(String nome, int nivel) {
-      super(nome, nivel);
+
+
+
+
+    public Monstro(int nivel) {
+
+        super(Monstro.selecionarNomeRandom(), nivel);
 
       if(nivel%3==0) {
           setForca(getBase_Atributo() * (nivel+3));

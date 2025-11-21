@@ -19,7 +19,7 @@ public class SalaMonstro extends Sala{
         }
  
         // Antes era Monstro inimigo = new Monstro("Gollum", heroi.getNivel());
-        Monstro inimigo = new Monstro("Gollum", experiencia);
+        Monstro inimigo = new Monstro( experiencia);
 
         return inimigo;
 

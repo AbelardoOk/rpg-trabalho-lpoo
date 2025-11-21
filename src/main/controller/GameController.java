@@ -19,7 +19,7 @@ import src.main.model.Salas.SalaMonstro;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.*;
 
-public class GameController {
+public class GameController{
     public enum GameState {
         MAIN_MENU,
         PATH_CHOICE,
@@ -84,7 +84,7 @@ public class GameController {
     }
 
     public void run() throws java.io.IOException  {
-        Monstro inimigo = new Monstro("Teste", 1);
+        Monstro inimigo = new Monstro(1);
 
         while(level < 100) {
             switch (this.currentState) {
