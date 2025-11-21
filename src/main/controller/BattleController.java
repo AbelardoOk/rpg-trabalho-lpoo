@@ -39,7 +39,7 @@ public class BattleController {
     	}
 
     public boolean run() throws java.io.IOException {
-        System.out.println(heroi.getVidaMaxima() + "  " + inimigo.getVidaMaxima());
+
          
 		while(heroi.estaVivo() && inimigo.estaVivo()) {
 			screen.clear();

@@ -41,7 +41,6 @@ public class ItemRoomController {
 			this.nivel = nivel;
             Random gerador=new Random();
             int num=gerador.nextInt(100);
-            System.out.println(num);
             if(num<15){
                 this.lista.add(new PocaoLetal());
             }

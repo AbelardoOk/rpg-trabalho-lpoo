@@ -28,7 +28,6 @@ public class GameOverController {
 
     public int run() throws java.io.IOException {
          
-        System.out.println("AQUIII");
 		while(numero == 0) {
             
 			screen.clear();

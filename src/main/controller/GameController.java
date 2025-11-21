@@ -101,7 +101,6 @@ public class GameController {
                     battleController = new BattleController(screen, tg, battleScreen, inventoryScreen, heroi, inimigo, terminal, level);
                     boolean heroiVenceu = battleController.run();
 
-                    System.out.println(heroiVenceu);
                     if (heroiVenceu) {
                         batalhou = true;
                         this.currentState = GameState.PATH_CHOICE;
@@ -182,7 +181,7 @@ public class GameController {
         if (heroi.estaVivo()) {
             System.out.println("Voce Venceu!");
         } else {
-            System.out.println("Cabo.");
+            System.out.println("Fim.");
         }
 
     }
