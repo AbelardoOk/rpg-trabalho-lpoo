@@ -15,16 +15,14 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 import com.googlecode.lanterna.screen.TerminalScreen;
 
 import src.main.model.Entidade.Personagem.Personagem;
-import src.main.model.Item.pocao.PocaoCura;
+import src.main.model.Salas.SalaMonstro;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.*;
 
-public class GameController {
+public class GameController{
     public enum GameState {
         MAIN_MENU,
-        CHARACTER,
         PATH_CHOICE,
-        ITEM_ROOM,
         IN_BATTLE,
         GAME_OVER
     }
@@ -34,25 +32,18 @@ public class GameController {
     private SwingTerminalFrame terminal;
 	private Personagem heroi;
 	private int level=1;
-	private int maior_nivel=0;
-	private String nome_melhor;
     private boolean batalhou=false;
 
     private MenuController menuController;
     private PathController pathController;
     private BattleController battleController; 
     private GameOverController gameoverController; 
-    private CharacterController characterController; 
-    private ItemRoomController itemroomController;
     
     private BattleScreen battleScreen; 
     private MenuScreen menuScreen;
     private GameOverScreen gameoverScreen;
     private PathBattleScreen pathbattleScreen;
     private PathScreen pathScreen;
-    private InventoryScreen inventoryScreen;
-    private CharacterScreen characterScreen;
-    private ItemRoomScreen itemroomScreen;
 
     private GameState currentState;
 
@@ -85,20 +76,20 @@ public class GameController {
         this.gameoverScreen = new GameOverScreen();
         this.pathbattleScreen = new PathBattleScreen();
         this.pathScreen = new PathScreen();
-        this.inventoryScreen = new InventoryScreen();
-        this.characterScreen = new CharacterScreen();
-        this.itemroomScreen = new ItemRoomScreen();
+        
+        //Temporário
+        this.heroi = new Personagem("Antonio", 100, 10, 1, 1, 1);
  
         this.currentState = GameState.MAIN_MENU; 
     }
 
     public void run() throws java.io.IOException  {
-        Monstro inimigo = new Monstro("teste", 1);
+        Monstro inimigo = new Monstro(1);
 
         while(level < 100) {
             switch (this.currentState) {
                 case IN_BATTLE:
-                    battleController = new BattleController(screen, tg, battleScreen, inventoryScreen, heroi, inimigo, terminal, level);
+                    battleController = new BattleController(screen, tg, battleScreen, heroi, inimigo, terminal, level);
                     boolean heroiVenceu = battleController.run();
 
                     if (heroiVenceu) {
@@ -114,18 +105,9 @@ public class GameController {
                     menuController = new MenuController(screen, tg, menuScreen, terminal);
                     boolean iniciar = menuController.run();
 
-                    if (iniciar) {this.currentState = GameState.CHARACTER;}
+                    if (iniciar) {this.currentState = GameState.PATH_CHOICE;}
                     
                     break;
-                
-                case CHARACTER:
-                    characterController = new CharacterController(screen, tg, characterScreen, terminal);
-                    String nome = characterController.run();
-                    
-                    this.heroi = new Personagem(nome);
-                    heroi.setPocoes(new PocaoCura(heroi.getNivel()));
-
-                    this.currentState = GameState.PATH_CHOICE;
 
                 case PATH_CHOICE:
                     if (batalhou) {  //Mensagem de Vitória
@@ -139,40 +121,18 @@ public class GameController {
 
                     if (path_escolhido.equals("IN_BATTLE")) {
                         this.currentState = GameState.IN_BATTLE;
-                        if(level % 3 == 0){
-                            inimigo = new Monstro("MONSTRAO",(level+2));
-                        }else{
-                            inimigo = new Monstro("monstrim",level);
-                        }
+                        SalaMonstro salamonstro = new SalaMonstro();
+                        inimigo =  salamonstro.criar_monstro(heroi);
                     }
-                    else if (path_escolhido.equals("ITEM_ROOM")) {
-                        this.currentState = GameState.ITEM_ROOM;
-                    } 
+                    else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala item
                     else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala especial
                     
 
                     break;
 
-                case ITEM_ROOM:
-                    itemroomController = new ItemRoomController(screen, tg, inventoryScreen, itemroomScreen, heroi, inimigo, terminal, level);
-                    itemroomController.run();
-
-                    this.currentState = GameState.PATH_CHOICE;
-
-                    break;
-
                 case GAME_OVER:
-                    if (level > maior_nivel) {
-                        maior_nivel = level;
-                        nome_melhor = heroi.getNome();
-                    }
-
-                    gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal, maior_nivel, nome_melhor);
-                    int num = gameoverController.run();
-                    if (num == 1) {
-                        level = 1;
-                        this.currentState = GameState.MAIN_MENU;
-                    }
+                    gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal);
+                    gameoverController.run();
                     break;
             }
 		}
