@@ -13,7 +13,7 @@ public class InventoryScreen {
         tg.putString(16, 3, "== INVENTÁRIO DE " + heroi.getNome() + " ==");
 
 
-        tg.putString(5, 11, "== AÇÕES (Enter para usar | S para soltar)==");
+        tg.putString(5, 11, "== AÇÕES (Enter para usar | S para soltar | 10 itens de limite)==");
         int j=12;
         for (int i=0; i<Itens.size(); i++) {
             tg.putString(5, j, (OpcaoSelecionada == i ? ">" : " ") + " " + Itens.get(i));

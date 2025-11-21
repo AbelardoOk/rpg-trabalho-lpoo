@@ -13,7 +13,7 @@ public class GameOverController {
 	private GameOverScreen gs;
 	private SwingTerminalFrame terminal;
 	private int OpcaoSelecionada = 0;
-	private int num = 0;
+	private int numero = 0;
 	private int maior_nivel=0;
 	private String nome_melhor=null;
 
@@ -29,7 +29,7 @@ public class GameOverController {
     public int run() throws java.io.IOException {
          
         System.out.println("AQUIII");
-		while(num == 0) {
+		while(numero == 0) {
             
 			screen.clear();
 			gs.draw(tg, OpcaoSelecionada, maior_nivel, nome_melhor);
@@ -51,7 +51,7 @@ public class GameOverController {
                     break;
 
                 case Enter:
-                    num = Acao();
+                    numero = Acao();
                     break;
 
 				case Escape:
@@ -64,7 +64,7 @@ public class GameOverController {
 
 			
 		}
-		return num;
+		return numero;
 	}
 
 	private int Acao() throws java.io.IOException {

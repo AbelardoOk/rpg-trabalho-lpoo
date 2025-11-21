@@ -35,7 +35,7 @@ public class GameController {
     private SwingTerminalFrame terminal;
 	private Personagem heroi;
 	private int level=1;
-	private int maior_nivel;
+	private int maior_nivel=0;
 	private String nome_melhor;
     private boolean batalhou=false;
 
@@ -158,9 +158,13 @@ public class GameController {
 
                     this.currentState = GameState.PATH_CHOICE;
 
+                    break;
+
                 case GAME_OVER:
-                    maior_nivel = level;
-                    nome_melhor = heroi.getNome();
+                    if (level > maior_nivel) {
+                        maior_nivel = level;
+                        nome_melhor = heroi.getNome();
+                    }
 
                     gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal, maior_nivel, nome_melhor);
                     int num = gameoverController.run();
