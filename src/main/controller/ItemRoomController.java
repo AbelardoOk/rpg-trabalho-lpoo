@@ -13,6 +13,7 @@ import src.main.view.ItemRoomScreen;
 import src.main.model.Item.pocao.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ItemRoomController {
     private Screen screen;
@@ -38,9 +39,19 @@ public class ItemRoomController {
             this.inimigo = inimigo;
 			this.terminal = terminal;
 			this.nivel = nivel;
-            this.lista.add(new PocaoCura(this.nivel));
-            this.lista.add(new PocaoForca());
-            this.lista.add(new PocaoLetal());
+            Random gerador=new Random();
+            int num=gerador.nextInt(100);
+            System.out.println(num);
+            if(num<15){
+                this.lista.add(new PocaoLetal());
+            }
+            if(num>10 && num<80){
+                this.lista.add(new PocaoCura(this.nivel));
+            }
+            if(num>75)
+            
+            this.lista.add(new PocaoForca(this.nivel));
+            
     	}
 
     public void run() throws java.io.IOException {
