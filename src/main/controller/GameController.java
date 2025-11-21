@@ -25,6 +25,7 @@ public class GameController {
         MAIN_MENU,
         CHARACTER,
         PATH_CHOICE,
+        ITEM_ROOM,
         IN_BATTLE,
         GAME_OVER
     }
@@ -41,6 +42,7 @@ public class GameController {
     private BattleController battleController; 
     private GameOverController gameoverController; 
     private CharacterController characterController; 
+    private ItemRoomController itemroomController;
     
     private BattleScreen battleScreen; 
     private MenuScreen menuScreen;
@@ -49,6 +51,7 @@ public class GameController {
     private PathScreen pathScreen;
     private InventoryScreen inventoryScreen;
     private CharacterScreen characterScreen;
+    private ItemRoomScreen itemroomScreen;
 
     private GameState currentState;
 
@@ -83,6 +86,7 @@ public class GameController {
         this.pathScreen = new PathScreen();
         this.inventoryScreen = new InventoryScreen();
         this.characterScreen = new CharacterScreen();
+        this.itemroomScreen = new ItemRoomScreen();
  
         this.currentState = GameState.MAIN_MENU; 
     }
@@ -138,11 +142,19 @@ public class GameController {
                         SalaMonstro salamonstro = new SalaMonstro();
                         inimigo =  salamonstro.criar_monstro(heroi);
                     }
-                    else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala item
+                    else if (path_escolhido.equals("ITEM_ROOM")) {
+                        this.currentState = GameState.ITEM_ROOM;
+                    } // Pra sala item
                     else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala especial
                     
 
                     break;
+
+                case ITEM_ROOM:
+                    itemroomController = new ItemRoomController(screen, tg, inventoryScreen, itemroomScreen, heroi, terminal, level);
+                    itemroomController.run();
+
+                    this.currentState = GameState.PATH_CHOICE;
 
                 case GAME_OVER:
                     gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal);
