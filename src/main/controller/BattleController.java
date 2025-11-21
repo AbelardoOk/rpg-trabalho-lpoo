@@ -90,7 +90,7 @@ public class BattleController {
 				if (inimigo.estaVivo()) {log = inimigo.atacar(heroi); lista.add(log);}
 				break;
 			case 1:
-				InventoryController inventoryController = new InventoryController(screen, tg, is, heroi, terminal);
+				InventoryController inventoryController = new InventoryController(screen, tg, is, heroi, inimigo, terminal);
 				ArrayList<Pocao> p = new ArrayList<>();
 				p = inventoryController.run();
 				heroi.setPocoes(p);
