@@ -7,4 +7,7 @@ public class PocaoLetal extends Pocao{///Pocao fatal???
     public  void consumir(Entidade p){
         p.setVidaAtual(0);
     }
+    public PocaoLetal(){
+    setNome("Pocao Letal");
+    }
 }

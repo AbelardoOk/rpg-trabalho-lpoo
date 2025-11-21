@@ -25,9 +25,9 @@ public class PocaoCura extends Pocao {
   }
 
   public PocaoCura(int nivel){
-    setNome("Pocao de Cura");
     Random gerador = new Random();
     setEficacia(70+((gerador.nextInt(10)+5)*nivel)); 
+    setNome("Pocao de Cura (+"+this.getEficacia()+")");
   }
 
   

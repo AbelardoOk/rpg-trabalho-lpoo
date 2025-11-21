@@ -12,9 +12,9 @@ public class PocaoForca extends Pocao {
 
 
   public PocaoForca(){
-    setNome("Pocao de Forca");
     Random gerador = new Random();
     setEficacia(gerador.nextInt(50));
+    setNome("Pocao de Forca (+"+this.getEficacia()+")");
   }
 
     
