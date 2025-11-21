@@ -16,7 +16,6 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 
 import src.main.model.Entidade.Personagem.Personagem;
 import src.main.model.Item.pocao.PocaoCura;
-import src.main.model.Salas.SalaMonstro;
 import src.main.model.Entidade.Monstro.Monstro;
 import src.main.view.*;
 
@@ -135,8 +134,11 @@ public class GameController {
 
                     if (path_escolhido.equals("IN_BATTLE")) {
                         this.currentState = GameState.IN_BATTLE;
-                        SalaMonstro salamonstro = new SalaMonstro();
-                        inimigo =  salamonstro.criar_monstro(heroi);
+                        if(level % 3 == 0){
+                            inimigo = new Monstro("MONSTRAO",(level+2));
+                        }else{
+                            inimigo = new Monstro("monstrim",level);
+                        }
                     }
                     else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala item
                     else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala especial
