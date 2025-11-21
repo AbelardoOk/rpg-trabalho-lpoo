@@ -45,11 +45,11 @@ public class ItemRoomController {
                 this.lista.add(new PocaoLetal());
             }
             if(num>10 && num<80){
-                this.lista.add(new PocaoCura(this.nivel));
+                this.lista.add(new PocaoCura(this.heroi.getNivel()));
             }
             if(num>75)
             
-            this.lista.add(new PocaoForca(this.nivel));
+            this.lista.add(new PocaoForca(this.heroi.getNivel()));
             
     	}
 

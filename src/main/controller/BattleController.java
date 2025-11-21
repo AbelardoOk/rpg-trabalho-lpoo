@@ -13,6 +13,7 @@ import src.main.model.Item.pocao.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BattleController {
     private Screen screen;
@@ -25,7 +26,9 @@ public class BattleController {
 	private int OpcaoSelecionada = 0;
 	private String log;
 	private int nivel;
+	private int exp;
 	List<String> lista = new ArrayList<>();
+
 
 	public BattleController(Screen screen, TextGraphics tg, BattleScreen bs, InventoryScreen is, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal, int nivel) {
         	this.screen = screen;
@@ -39,8 +42,6 @@ public class BattleController {
     	}
 
     public boolean run() throws java.io.IOException {
-
-         
 		while(heroi.estaVivo() && inimigo.estaVivo()) {
 			screen.clear();
 			bs.draw(tg, heroi, inimigo, lista, OpcaoSelecionada, nivel);
@@ -88,6 +89,11 @@ public class BattleController {
 				log = heroi.atacar(inimigo);
 				lista.add(log);
 				if (inimigo.estaVivo()) {log = inimigo.atacar(heroi); lista.add(log);}
+				else{
+					Random gerador=new Random();
+					this.exp=gerador.nextInt(nivel*10)+nivel*6;
+					heroi.evoluir(exp);
+				}
 				break;
 			case 1:
 				InventoryController inventoryController = new InventoryController(screen, tg, is, heroi, inimigo, terminal);
@@ -99,6 +105,10 @@ public class BattleController {
 			default:
 				break;
 		}
+	}
+
+	public int getExp(){
+		return this.exp;
 	}
 
 }
