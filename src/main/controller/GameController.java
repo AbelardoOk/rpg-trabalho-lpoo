@@ -35,6 +35,8 @@ public class GameController {
     private SwingTerminalFrame terminal;
 	private Personagem heroi;
 	private int level=1;
+	private int maior_nivel;
+	private String nome_melhor;
     private boolean batalhou=false;
 
     private MenuController menuController;
@@ -144,7 +146,7 @@ public class GameController {
                     }
                     else if (path_escolhido.equals("ITEM_ROOM")) {
                         this.currentState = GameState.ITEM_ROOM;
-                    } // Pra sala item
+                    } 
                     else if (path_escolhido.equals("IN_BATTLE")) {} // Pra sala especial
                     
 
@@ -157,8 +159,15 @@ public class GameController {
                     this.currentState = GameState.PATH_CHOICE;
 
                 case GAME_OVER:
-                    gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal);
-                    gameoverController.run();
+                    maior_nivel = level;
+                    nome_melhor = heroi.getNome();
+
+                    gameoverController = new GameOverController(screen, tg, gameoverScreen, terminal, maior_nivel, nome_melhor);
+                    int num = gameoverController.run();
+                    if (num == 1) {
+                        level = 1;
+                        this.currentState = GameState.MAIN_MENU;
+                    }
                     break;
             }
 		}

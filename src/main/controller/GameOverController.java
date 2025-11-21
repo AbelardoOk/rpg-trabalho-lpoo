@@ -12,21 +12,27 @@ public class GameOverController {
 	private TextGraphics tg;
 	private GameOverScreen gs;
 	private SwingTerminalFrame terminal;
+	private int OpcaoSelecionada = 0;
+	private int num = 0;
+	private int maior_nivel=0;
+	private String nome_melhor=null;
 
-	public GameOverController(Screen screen, TextGraphics tg, GameOverScreen gs, SwingTerminalFrame terminal) {
+	public GameOverController(Screen screen, TextGraphics tg, GameOverScreen gs, SwingTerminalFrame terminal, int maior_nivel, String nome_melhor) {
         	this.screen = screen;
         	this.tg = tg;
         	this.gs = gs;
 			this.terminal = terminal;
+			this.maior_nivel = maior_nivel;
+			this.nome_melhor = nome_melhor;
     	}
 
-    public void run() throws java.io.IOException {
+    public int run() throws java.io.IOException {
          
         System.out.println("AQUIII");
-		while(true) {
+		while(num == 0) {
             
 			screen.clear();
-			gs.draw(tg);
+			gs.draw(tg, OpcaoSelecionada, maior_nivel, nome_melhor);
 			screen.refresh();
 
 			KeyStroke key = screen.readInput();
@@ -34,8 +40,18 @@ public class GameOverController {
 			if (key == null) {continue;}
 
 			switch (key.getKeyType()) {
+				case ArrowUp:
+                    OpcaoSelecionada--;
+                    if (OpcaoSelecionada < 0) OpcaoSelecionada = 1;
+                    break;
+
+                case ArrowDown:
+                    OpcaoSelecionada++;
+                    if (OpcaoSelecionada > 1) OpcaoSelecionada = 0;
+                    break;
+
                 case Enter:
-                    encerrar();
+                    num = Acao();
                     break;
 
 				case Escape:
@@ -48,6 +64,19 @@ public class GameOverController {
 
 			
 		}
+		return num;
+	}
+
+	private int Acao() throws java.io.IOException {
+		switch (OpcaoSelecionada) {
+			
+			case 0:
+				return 1;
+			case 1:
+				encerrar();
+				break;
+		}
+		return 0;
 	}
 
     public void encerrar()  {
