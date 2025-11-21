@@ -71,13 +71,13 @@ public class ItemRoomController {
                     case ArrowUp:
                         OpcaoSelecionada--;
                         if (OpcaoSelecionada < 0) {
-                            OpcaoSelecionada = TOTAL_OPCOES; 
+                            OpcaoSelecionada = TOTAL_OPCOES+1; 
                         }
                         break;
 
                     case ArrowDown:
                         OpcaoSelecionada++;
-                        if (OpcaoSelecionada >= TOTAL_OPCOES) {
+                        if (OpcaoSelecionada > TOTAL_OPCOES+1) {
                             OpcaoSelecionada = 0;
                         }
                         break;

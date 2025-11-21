@@ -69,7 +69,7 @@ public class InventoryController {
 
                     case ArrowDown:
                         OpcaoSelecionada++;
-                        if (OpcaoSelecionada >= TOTAL_OPCOES) {
+                        if (OpcaoSelecionada > TOTAL_OPCOES) {
                             OpcaoSelecionada = 0;
                         }
                         break;
