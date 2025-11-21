@@ -21,11 +21,13 @@ public class PathController {
 	private Personagem heroi;
 	private SwingTerminalFrame terminal;
 	private int OpcaoSelecionada = 0;
+    private int exp;
 	List<String> lista = new ArrayList<>();
 
-	public PathController(Screen screen, TextGraphics tg, PathScreen ps, PathBattleScreen pbs, Personagem heroi, SwingTerminalFrame terminal) {
+	public PathController(Screen screen, TextGraphics tg, int exp, PathScreen ps, PathBattleScreen pbs, Personagem heroi, SwingTerminalFrame terminal) {
         this.screen = screen;
         this.tg = tg;
+        this.exp = exp;
         this.ps = ps;
         this.pbs = pbs;
         this.heroi = heroi;
@@ -43,7 +45,7 @@ public class PathController {
             }
             else {
                 screen.clear();
-                pbs.draw(tg, heroi, OpcaoSelecionada);
+                pbs.draw(tg, heroi, exp, OpcaoSelecionada);
                 screen.refresh();
             }
 

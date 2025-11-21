@@ -5,9 +5,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import src.main.model.Entidade.Personagem.Personagem;
 
 public class PathBattleScreen {
-    public void draw(TextGraphics tg, Personagem heroi, int OpcaoSelecionada) {
+    public void draw(TextGraphics tg, Personagem heroi, int exp, int OpcaoSelecionada) {
         tg.putString(5, 3, "           == CORREDOR ==                ");
-        tg.putString(7, 4, "VOCÊ DERROTOU O MONSTRO E GANHOU "+heroi.getExperiencia()+" DE EXP");
+        tg.putString(7, 4, "VOCÊ DERROTOU O MONSTRO E GANHOU "+exp+" DE EXP");
         tg.putString(7, 6, "VOCÊ VÊ DUAS SALAS A SUA FRENTE");
         tg.putString(7, 7, "SÓ UM CAMINHO PODE TE LEVAR AO FIM DISSO!");
 

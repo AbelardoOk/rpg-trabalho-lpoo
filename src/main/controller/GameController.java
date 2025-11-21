@@ -37,6 +37,7 @@ public class GameController {
 	private int maior_nivel=0;
 	private String nome_melhor;
     private boolean batalhou=false;
+    private int exp=0;
 
     private MenuController menuController;
     private PathController pathController;
@@ -100,6 +101,7 @@ public class GameController {
                 case IN_BATTLE:
                     battleController = new BattleController(screen, tg, battleScreen, inventoryScreen, heroi, inimigo, terminal, level);
                     boolean heroiVenceu = battleController.run();
+                    exp = battleController.getExp();
 
                     if (heroiVenceu) {
                         batalhou = true;
@@ -129,11 +131,11 @@ public class GameController {
 
                 case PATH_CHOICE:
                     if (batalhou) {  //Mensagem de Vitória
-                        pathController = new PathController(screen, tg, null, pathbattleScreen, heroi, terminal); 
+                        pathController = new PathController(screen, tg, exp, null, pathbattleScreen, heroi, terminal); 
                         batalhou = false;
                     }
                     else { //Sem mensagem adicional
-                        pathController = new PathController(screen, tg, pathScreen, null, heroi, terminal);
+                        pathController = new PathController(screen, tg, exp, pathScreen, null, heroi, terminal);
                     }
                     String path_escolhido = pathController.run();
 
