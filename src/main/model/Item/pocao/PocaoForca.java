@@ -7,14 +7,16 @@ import src.main.model.Entidade.Entidade;
 public class PocaoForca extends Pocao {
  
  public  void consumir(Entidade p){
-        p.setVidaMaxima(0);
-}
+  p.setForca(this.getEficacia());
+ }
 
 
-  public PocaoForca(){
-    setNome("Pocao de Forca");
+
+
+  public PocaoForca(int nivel){
     Random gerador = new Random();
-    setEficacia(gerador.nextInt(50));
+    setEficacia(gerador.nextInt(nivel)+10);
+    setNome("Pocao de Forca (+"+this.getEficacia()+")");
   }
 
     

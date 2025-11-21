@@ -89,7 +89,7 @@ public class PathController {
         } 
         
         else if (chance < 80) {
-            return "IN_BATTLE"; // Sala Item
+            return "ITEM_ROOM"; // Sala Item
         } 
         
         else {

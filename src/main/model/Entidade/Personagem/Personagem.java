@@ -16,6 +16,9 @@ public class Personagem extends Entidade {
 
     public void setExperiencia(int exp) { this.experiencia = exp; }
     public int getExperiencia() { return experiencia; }
+    
+    public ArrayList<Pocao> getPocoes() {return this.pocoes;}
+    public void setPocoes(ArrayList<Pocao> p) {this.pocoes = p;}
 
     public void setPocoes(Pocao pocao){
       this.pocoes.add(pocao);  
@@ -48,6 +51,16 @@ public class Personagem extends Entidade {
       }
     }
 
+    public Personagem(String nome){
+      super(nome, 1);
+      setExperiencia(1);
+      setVidaMaxima(100);
+      setVidaAtual(100);
+      setForca(10);
+      setDefesa(10);
+      setArma(new Arma());
+    }
+
     public Personagem(String nome, float vida_maxima, int forca, int nivel, int defesa, int experiencia) {
       super(nome, nivel);
       setExperiencia(experiencia);
@@ -55,6 +68,7 @@ public class Personagem extends Entidade {
       setVidaAtual(vida_maxima);
       setForca(forca);
       setDefesa(defesa);
+      setArma(new Arma());
     }
 
 
@@ -71,21 +85,26 @@ public class Personagem extends Entidade {
 
         int ganhoForca = rand.nextInt(range) + minGanho;
         int ganhoDefesa = rand.nextInt(range) + minGanho;
-        int ganhoVida = rand.nextInt(range) + minGanho;
+        
+        int minGanhoVida = (getNivel() * 3) + 5;
+        int maxGanhoVida = (getNivel() * 5) + 10;
+        int rangeVida = maxGanhoVida - minGanhoVida + 1;
+        int ganhoVida = rand.nextInt(rangeVida) + minGanhoVida;
 
         setForca(getForca() + ganhoForca);
         setDefesa(getDefesa() + ganhoDefesa);
         setVidaMaxima(getVidaMaxima() + ganhoVida);
-
+        setVidaAtual(getVidaAtual() + ganhoVida);
       }
     }
 
     public String atacar(Entidade entidade){
-        int danobase = getForca(); // da pra colocar dano da arma aqui, se tiver arma.
-        int variacao = rand.nextInt(Math.max(1, danobase / 5));
-        int dano = variacao + danobase;
+        int danobaseTotal = arma.getDano() + this.getForca();
 
-        System.out.println(this.getNome() + " atacou com força " + dano + " de dano");
+        int variacaoMaxima = Math.max(1, danobaseTotal / 8);
+        int variacao = rand.nextInt(2 * variacaoMaxima + 1) - variacaoMaxima;
+        int dano = Math.max(1, variacao + danobaseTotal);
+
         if(!defender()){
           entidade.recebeDano(dano);
           return String.format("%s Atacou com %d de dano (%s PERDE %d)", super.getNome(), dano, entidade.getNome(), dano);

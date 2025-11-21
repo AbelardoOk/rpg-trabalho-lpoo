@@ -10,7 +10,7 @@ public class PocaoCura extends Pocao {
     float vida;
     vida=p.getVidaAtual() + getEficacia();
     if(vida>p.getVidaMaxima()){
-      vida=vida-p.getVidaMaxima();
+      vida=p.getVidaMaxima();
       p.setVidaAtual(vida);
     }else{
       p.setVidaAtual(vida);
@@ -24,10 +24,10 @@ public class PocaoCura extends Pocao {
     return super.toString()+" Vida Maxima Curada:"+ this.getEficacia()+"\n";
   }
 
-  public PocaoCura(){
-    setNome("Pocao de Cura");
+  public PocaoCura(int nivel){
     Random gerador = new Random();
-    setEficacia(gerador.nextInt(50));
+    setEficacia((gerador.nextInt(40)+35)+((gerador.nextInt(10)+5)*nivel)); 
+    setNome("Pocao de Cura (+"+this.getEficacia()+")");
   }
 
   
