@@ -7,6 +7,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 
 import src.main.model.Entidade.Personagem.Personagem;
+import src.main.model.Entidade.Monstro.Monstro;
 import src.main.model.Item.pocao.*;
 import src.main.view.InventoryScreen;
 
@@ -17,17 +18,19 @@ public class InventoryController {
 	private TextGraphics tg;
 	private InventoryScreen is;
 	private Personagem heroi;
+    private Monstro inimigo;
 	private SwingTerminalFrame terminal;
 	private int OpcaoSelecionada = 0;
 	ArrayList<Pocao> lista = new ArrayList<>();
     int num=0;
     int TOTAL_OPCOES;
 
-	public InventoryController(Screen screen, TextGraphics tg, InventoryScreen is, Personagem heroi, SwingTerminalFrame terminal) {
+	public InventoryController(Screen screen, TextGraphics tg, InventoryScreen is, Personagem heroi, Monstro inimigo, SwingTerminalFrame terminal) {
         	this.screen = screen;
         	this.tg = tg;
         	this.is = is;
         	this.heroi = heroi;
+            this.inimigo = inimigo;
 			this.terminal = terminal;
             this.lista = heroi.getPocoes();
     	}
@@ -97,8 +100,14 @@ public class InventoryController {
 
 	private int Acao() throws java.io.IOException {
         if (OpcaoSelecionada < lista.size()) {
-            lista.get(OpcaoSelecionada).consumir(heroi);
-            lista.remove(OpcaoSelecionada);
+            if (lista.get(OpcaoSelecionada).getNome() == "Pocao de Arremessar Letal") {
+                lista.get(OpcaoSelecionada).consumir(inimigo);
+                lista.remove(OpcaoSelecionada);
+            }
+            else {
+                lista.get(OpcaoSelecionada).consumir(heroi);
+                lista.remove(OpcaoSelecionada);
+            }
             return 0;
 		}
         else if (OpcaoSelecionada == lista.size()) {

@@ -6,6 +6,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 
+import src.main.model.Entidade.Monstro.Monstro;
 import src.main.model.Entidade.Personagem.Personagem;
 import src.main.view.InventoryScreen;
 import src.main.view.ItemRoomScreen;
@@ -19,6 +20,7 @@ public class ItemRoomController {
 	private ItemRoomScreen irs;
     private InventoryScreen is;
 	private Personagem heroi;
+    private Monstro inimigo;
 	private SwingTerminalFrame terminal;
 	private int OpcaoSelecionada = 0;
 	private int nivel;
@@ -27,12 +29,13 @@ public class ItemRoomController {
     int TOTAL_OPCOES;
 	ArrayList<Pocao> lista = new ArrayList<>();
 
-	public ItemRoomController(Screen screen, TextGraphics tg, InventoryScreen is, ItemRoomScreen irs, Personagem heroi, SwingTerminalFrame terminal, int nivel) {
+	public ItemRoomController(Screen screen, TextGraphics tg, InventoryScreen is, ItemRoomScreen irs, Personagem heroi, Monstro inimigo,SwingTerminalFrame terminal, int nivel) {
         	this.screen = screen;
         	this.tg = tg;
 			this.irs = irs;
             this.is = is;
         	this.heroi = heroi;
+            this.inimigo = inimigo;
 			this.terminal = terminal;
 			this.nivel = nivel;
             this.lista.add(new PocaoCura(this.nivel));
@@ -114,7 +117,7 @@ public class ItemRoomController {
             return 0;
 		}
         else if (OpcaoSelecionada == lista.size()) { //Inventário
-            InventoryController inventoryController = new InventoryController(screen, tg, is, heroi, terminal);
+            InventoryController inventoryController = new InventoryController(screen, tg, is, heroi, inimigo, terminal);
             ArrayList<Pocao> p = new ArrayList<>();
             p = inventoryController.run();
             heroi.setPocoes(p);

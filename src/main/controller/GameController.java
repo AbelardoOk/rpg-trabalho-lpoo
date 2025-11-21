@@ -93,7 +93,7 @@ public class GameController {
     }
 
     public void run() throws java.io.IOException  {
-        Monstro inimigo = new Monstro("Teste", 1);
+        Monstro inimigo = new Monstro("teste", 1);
 
         while(level < 100) {
             switch (this.currentState) {
@@ -155,7 +155,7 @@ public class GameController {
                     break;
 
                 case ITEM_ROOM:
-                    itemroomController = new ItemRoomController(screen, tg, inventoryScreen, itemroomScreen, heroi, terminal, level);
+                    itemroomController = new ItemRoomController(screen, tg, inventoryScreen, itemroomScreen, heroi, inimigo, terminal, level);
                     itemroomController.run();
 
                     this.currentState = GameState.PATH_CHOICE;
