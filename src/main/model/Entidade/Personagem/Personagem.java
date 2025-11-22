@@ -75,7 +75,7 @@ public class Personagem extends Entidade {
     public void evoluir(int exp){
       setExperiencia(getExperiencia() + exp);
 
-      while(getExperiencia() >= 100){
+      while(getExperiencia() >= getNivel() * 100){
         setNivel(getNivel() + 1);
         setExperiencia(getExperiencia() - 100);
 

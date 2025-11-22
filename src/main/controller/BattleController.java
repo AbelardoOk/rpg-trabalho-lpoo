@@ -91,7 +91,7 @@ public class BattleController {
 				if (inimigo.estaVivo()) {log = inimigo.atacar(heroi); lista.add(log);}
 				else{
 					Random gerador=new Random();
-					this.exp=gerador.nextInt(nivel*10)+nivel*6;
+					this.exp=gerador.nextInt((nivel*10) + 1) + nivel*6;
 					heroi.evoluir(exp);
 				}
 				break;
